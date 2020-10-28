@@ -205,6 +205,7 @@ select * into #tempTable（解释临时表） from bbb（解释要处理的表�
 Create unique index temp on #tempTable(去重字段) with IGNORE_DUP_KEY
 --//将源表中的数据拷贝到临时表中，拷贝的同时会忽略重复列的数据，也即只保留了一份数据。
 insert into #tempTable select * from （解释要处理的表）
+insert into tablename(字段a,b,c)  select (字段a,b,c)  from  tablename
 drop table #tempTable
 								
 								</font>
