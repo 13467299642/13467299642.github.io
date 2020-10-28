@@ -186,16 +186,32 @@
 						<div class="article-entry" itemprop="articleBody">
 
 							<p>Welcome to XU LIN Blog .</p>
-							<h2 id="Sql Server">
-								<a href="/archives/2020/SqlServer" class="Sql Server" title="Sql Server">Sql
-									Server</a>
+							<h1 id="Sql Server">
+								<p>SqlServer</p>
+							</h1>
+							<h2 id="">
+								<p>1.（去重）某一列明去重，删除其他数据</p>
 							</h2>
 							
 							<figure class="highlight bash">
 								<table>
 									<tr>
 										<td class="gutter"><pre>
-												<span class="line">1</span><br>
+												<span class="line">
+												<p>方法一：</p>
+										                <p>		
+												--//将源表的数据结构复制到临时表#tempTable中
+												select * into #tempTable（解释临时表） from bbb（解释要处理的表） where 1<>1
+												--//在临时表中创建索引，并忽略重复列数据
+												Create unique index temp on #tempTable(去重字段) with IGNORE_DUP_KEY
+												--//将源表中的数据拷贝到临时表中，拷贝的同时会忽略重复列的数据，也即只保留了一份数据。
+												insert into #tempTable select * from （解释要处理的表）
+												
+												
+												
+												drop table #tempTable
+												</p>
+												</span><br>
 											</pre></td>
 										<td class="code"><pre>
 												<span class="line">$ hexo new <span class="string">"My New Post"</span></span><br>
@@ -203,15 +219,7 @@
 									</tr>
 								</table>
 							</figure>
-
-							<p>
-								More info: <a href="https://hexo.io/docs/writing.html"
-									target="_blank" rel="noopener">Writing</a>
-							</p>
-							<h3 id="Run-server">
-								<a href="#Run-server" class="headerlink" title="Run server"></a>Run
-								server
-							</h3>
+							
 							<figure class="highlight bash">
 								<table>
 									<tr>
@@ -225,14 +233,6 @@
 								</table>
 							</figure>
 
-							<p>
-								More info: <a href="https://hexo.io/docs/server.html"
-									target="_blank" rel="noopener">Server</a>
-							</p>
-							<h3 id="Generate-static-files">
-								<a href="#Generate-static-files" class="headerlink"
-									title="Generate static files"></a>Generate static files
-							</h3>
 							<figure class="highlight bash">
 								<table>
 									<tr>
@@ -247,14 +247,7 @@
 								</table>
 							</figure>
 
-							<p>
-								More info: <a href="https://hexo.io/docs/generating.html"
-									target="_blank" rel="noopener">Generating</a>
-							</p>
-							<h3 id="Deploy-to-remote-sites">
-								<a href="#Deploy-to-remote-sites" class="headerlink"
-									title="Deploy to remote sites"></a>Deploy to remote sites
-							</h3>
+							
 							<figure class="highlight bash">
 								<table>
 									<tr>
@@ -268,12 +261,7 @@
 								</table>
 							</figure>
 
-							<p>
-								More info: <a
-									href="https://hexo.io/docs/one-command-deployment.html"
-									target="_blank" rel="noopener">Deployment</a>
-							</p>
-
+							
 
 						</div>
 
