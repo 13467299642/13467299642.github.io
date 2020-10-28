@@ -200,11 +200,12 @@
 <font size="5">方法一：</font>
 <font size="4">	
 --//将源表的数据结构复制到临时表#tempTable中
-select * into #tempTable（解释临时表） from bbb（解释要处理的表） where 1<>1
+select * into #tempTable（解释：临时表） from bbb（解释：要处理的表） where 1<>1
 --//在临时表中创建索引，并忽略重复列数据
 Create unique index temp on #tempTable(去重字段) with IGNORE_DUP_KEY
 --//将源表中的数据拷贝到临时表中，拷贝的同时会忽略重复列的数据，也即只保留了一份数据。
-insert into #tempTable select * from （解释要处理的表）
+
+insert into #tempTable select * from （解释：要处理的表）
 insert into tablename(字段a,b,c)  select (字段a,b,c)  from  tablename
 drop table #tempTable
 </font>
@@ -218,7 +219,6 @@ DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY 
 
 可以对表更改添加一列
 ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
-
 alter table dbo.table_1  drop column [ID]（删除某一列）
 
 </font>
