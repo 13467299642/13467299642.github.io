@@ -197,8 +197,8 @@
 								
 							<pre>
 								<span class="line">
-								<p><font size="6">方法一：</font></p>
-								<p><font size="4">		
+								<font size="5">方法一：</font>
+								<font size="4">		
 								--//将源表的数据结构复制到临时表#tempTable中
 								select * into #tempTable（解释临时表） from bbb（解释要处理的表） where 1<>1
 								--//在临时表中创建索引，并忽略重复列数据
@@ -207,7 +207,6 @@
 								insert into #tempTable select * from （解释要处理的表）
 								drop table #tempTable
 								</font>
-								</p>
 								</span>
 							</pre>
 										
