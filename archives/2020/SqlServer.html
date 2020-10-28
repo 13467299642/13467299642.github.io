@@ -230,11 +230,8 @@ alter table dbo.table_1  drop column [ID]（删除某一列）
 							<figure class="highlight bash">
 <pre>
 <span class="line">
-<font size="5">查询主键，添加数据</font>
+<font size="5">添加数据</font>
 <font size="4">	
- --//查询某个表的主键
-SELECT TABLE_NAME,COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME='TAPFTEQUIPMENTHISTORY'
-
  --//查询添加一列连续的自增列
 select  *,ROW_NUMBER()  over(order by getdate() ) as ROW_NUMBER from dbo.table_1
 
