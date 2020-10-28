@@ -220,9 +220,7 @@ DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY 
 可以对表更改添加一列
 ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
 alter table dbo.table_1  drop column [ID]（删除某一列）
-
 </font>
-
 								</span>
 							</pre>
 										
@@ -230,16 +228,7 @@ alter table dbo.table_1  drop column [ID]（删除某一列）
 							</figure>
 							
 							<figure class="highlight bash">
-								<table>
-									<tr>
-										<td class="gutter"><pre>
-												<span class="line">1</span><br>
-											</pre></td>
-										<td class="code"><pre>
-												<span class="line">$ hexo server</span><br>
-											</pre></td>
-									</tr>
-								</table>
+								
 							</figure>
 
 							<figure class="highlight bash">
