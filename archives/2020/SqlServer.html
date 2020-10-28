@@ -207,8 +207,22 @@ Create unique index temp on #tempTable(去重字段) with IGNORE_DUP_KEY
 insert into #tempTable select * from （解释要处理的表）
 insert into tablename(字段a,b,c)  select (字段a,b,c)  from  tablename
 drop table #tempTable
-								
-								</font>
+</font>
+<font size="5">方法二：</font>
+<font size="4">
+前提数据中有一列id唯一。
+--//查询某一列不重复的记录
+SELECT * FROM dbo.Member WHERE ID  IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
+--//清除某一列重复的数据
+DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
+
+可以对表更改添加一列
+ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
+
+alter table dbo.table_1  drop column [ID]（删除某一列）
+
+</font>
+
 								</span>
 							</pre>
 										
