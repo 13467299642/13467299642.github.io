@@ -233,9 +233,9 @@ alter table dbo.table_1  drop column [ID]（删除某一列）
 <font size="5">添加数据</font>
 <font size="4">	
  --//查询添加一列连续的自增列
-select  *,ROW_NUMBER()  over(order by getdate() ) as ROW_NUMBER from dbo.table_1
+select  *,ROW_NUMBER()  over(order by getdate() ) as ROW_NUMBER from TableName
 
---//添加数据
+--//添加数据 指定数量  时间间隔
 declare @i int
 select @i=1
 while @i<=477
