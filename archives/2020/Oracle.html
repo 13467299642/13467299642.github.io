@@ -202,6 +202,186 @@
 select rowid from  TableName
 //函数
 substr('TAP0'||I, 0, 5)  参数1.string ,参数二开始位置，参数三截取长度。
+//添加数据 添加第一条数据  然后指定间隔添加第二条数据  第三条数据
+declare
+H varchar2(5);
+M varchar2(5);
+S varchar2(5);
+DA varchar2(5);
+DD integer;
+HH integer;
+MM integer;
+SE integer;
+
+EVENTCD varchar2(20);
+GLASS_CNT varchar2(20);
+AREA varchar2(20);
+EQP_NAME varchar2(20);
+
+begin
+  
+  FOR K IN 1..6 LOOP
+  DD := 1;
+  SE := 1;
+  MM := 0;
+  HH := 0;
+  FOR I IN 101..299 loop --指定循环 和参数
+         
+       IF K<5 THEN
+         GLASS_CNT :='9';
+         ELSE
+           GLASS_CNT :='0';
+         END IF;
+      --AREA
+      IF  K = 1 THEN
+          AREA :='string1';--字段指定值
+          EQP_NAME :='string1';
+        ELSIF  K = 2 THEN
+          AREA :='string2';
+          EQP_NAME :='string2';
+  
+       END IF;
+       --时间
+       IF SE > 59 THEN
+             SE:=SE - 60;
+             MM:=MM+1;
+             S:= SE;
+        END IF;
+       IF SE<10 THEN
+           S := '0'||SE;
+         ELSE
+           S := SE; 
+        END IF;
+        IF MM > 59 THEN
+             MM:=MM - 60;
+             HH:=HH+1;
+             M:= MM;
+        END IF;
+             
+       IF MM<10 THEN
+           M := '0'||MM;
+         ELSE
+          M := MM; 
+        END IF;
+       --时 
+       IF HH>23 THEN
+         HH := HH - 24;
+         DD := DD +1;
+         H := HH;
+        END IF; 
+       IF HH < 10 THEN
+          H := '0'||HH ; 
+        ELSE
+          H := HH;           
+       END IF;
+       
+       IF DD < 10 THEN
+          DA := '0'||DD;
+        ELSE
+          DA := DD;
+        END IF;
+           insert into TableNmae (FAB, TECH, LOT_CD, LOT_ID, ALIAS_LOT_ID, PROD, OPER, TM_KEY, EVENT_CD, GLASS_CNT, PNL_QTY, AREA, EQP_NAME, RECIPE,  )
+            values ('TI', 'TECH2',substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S,'LOAD', GLASS_CNT, '36',AREA,EQP_NAME, AREA||'_RECIPE_TEST');
+           
+           MM := MM + 2;
+           SE := SE +1;
+               --时间
+           IF SE > 59 THEN
+                 SE:=SE - 60;
+                 MM:=MM+1;
+                 S:= SE;
+            END IF;
+           IF SE<10 THEN
+               S := '0'||SE;
+             ELSE
+               S := SE; 
+            END IF;
+            IF MM > 59 THEN
+                 MM:=MM - 60;
+                 HH:=HH+1;
+                 M:= MM;
+            END IF;
+                 
+           IF MM<10 THEN
+               M := '0'||MM;
+             ELSE
+              M := MM; 
+            END IF;
+           --时 
+           IF HH>23 THEN
+             HH := HH - 24;
+             DD := DD +1;
+             H := HH;
+            END IF; 
+           IF HH < 10 THEN
+              H := '0'||HH ; 
+            ELSE
+              H := HH;           
+           END IF;
+           
+           IF DD < 10 THEN
+              DA := '0'||DD;
+            ELSE
+              DA := DD;
+            END IF;
+                   
+           insert into TableNmae (FAB, TECH, LOT_CD, LOT_ID, ALIAS_LOT_ID, PROD, OPER, TM_KEY, EVENT_CD, GLASS_CNT, PNL_QTY, AREA, EQP_NAME, RECIPE)
+            values ('TI', 'TECH2',substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S,'JOB_START', GLASS_CNT, '36',AREA,EQP_NAME, AREA||'_RECIPE_TEST');
+           HH := HH + 3;           
+           MM := MM + 20;
+           SE := SE +1;
+               --时间
+           IF SE > 59 THEN
+                 SE:=SE - 60;
+                 MM:=MM+1;
+                 S:= SE;
+            END IF;
+           IF SE<10 THEN
+               S := '0'||SE;
+             ELSE
+               S := SE; 
+            END IF;
+            IF MM > 59 THEN
+                 MM:=MM - 60;
+                 HH:=HH+1;
+                 M:= MM;
+            END IF;
+                 
+           IF MM<10 THEN
+               M := '0'||MM;
+             ELSE
+              M := MM; 
+            END IF;
+           --时 
+           IF HH>23 THEN
+             HH := HH - 24;
+             DD := DD +1;
+             H := HH;
+            END IF; 
+           IF HH < 10 THEN
+              H := '0'||HH ; 
+            ELSE
+              H := HH;           
+           END IF;
+           
+           IF DD < 10 THEN
+              DA := '0'||DD;
+            ELSE
+              DA := DD;
+            END IF;
+                   
+           
+           insert into TableNmae (FAB, TECH, LOT_CD, LOT_ID, ALIAS_LOT_ID, PROD, OPER, TM_KEY, EVENT_CD, GLASS_CNT, PNL_QTY, AREA, EQP_NAME, RECIPE)
+            values ('TI', 'TECH2',substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S,'JOB_END', GLASS_CNT, '36',AREA,EQP_NAME, AREA||'_RECIPE_TEST');
+           
+          
+     COMMIT;  
+           MM := MM + 20;
+           SE := SE +1;
+end LOOP;
+end LOOP;
+END;
+
 
 </font>
 								</span>
