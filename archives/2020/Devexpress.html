@@ -194,8 +194,7 @@
 								<p>1.（去重）某一列明去重，删除其他数据</p>
 							</h2>
 							
-							<figure class="highlight bash">
-								
+							<figure class="highlight bash">		
 						<pre>
 <span class="line">
 <font size="5" color="blue" >Dev 基本使用：</font>
@@ -208,6 +207,11 @@ gridView.Columns[下表或者列明].Width = 80;
 gridView.BestFitColumns(); 
  --//是否可以编辑
 gridView.OptionsBehavior.Editable = false;
+--//清楚数据
+gridControl.DataBindings.Clear();
+gridControl.DataSource = null;
+gridView.Columns.Clear();
+--//
  
 </font>
 
