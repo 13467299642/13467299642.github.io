@@ -198,15 +198,20 @@
 								
 						<pre>
 <span class="line">
-<font size="5">方法一：</font>
+<font size="5" color="blue" >Dev 基本使用：</font>
 <font size="4">	
-
+ --//gridView赋值
+gridControl.DataSource = DataTable;
+ --//改变某一列的宽度（下标或者列明）
+gridView.Columns[下表或者列明].Width = 80;
+ --//列宽自适应内容
+gridView.BestFitColumns(); 
+ --//是否可以编辑
+gridView.OptionsBehavior.Editable = false;
+ 
 </font>
-<font size="5">方法二：</font>
-<font size="4">
 
-</font>
-								</span>
+</span>
 							</pre>
 										
 								
