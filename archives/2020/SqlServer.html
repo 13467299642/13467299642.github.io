@@ -253,6 +253,11 @@ substring(列名,index,length) 截取
 
 select REPLACE(字段,'A','B')  from TableName  替换(A替换成B)
 
+--//查询表得所有列名
+select name from syscolumns where id=object_id('TableName');
+--//查询指定列的长度小于
+select  * from  TAPFTINVENTORYPARTS where len(列名) <6;
+
 </font>
 								</span>
 							</pre>
