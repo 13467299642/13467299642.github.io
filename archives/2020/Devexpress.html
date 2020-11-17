@@ -198,19 +198,30 @@
 						<pre>
 <span class="line">
 <font size="4">	
- --//gridView赋值
+<font  color="DeepSkyBlue" >--//gridView赋值</font>
 gridControl.DataSource = DataTable;
- --//改变某一列的宽度（下标或者列明）
+<font  color="DeepSkyBlue" >--//改变某一列的宽度（下标或者列明）</font>
 gridView.Columns[下表或者列明].Width = 80;
- --//列宽自适应内容
+<font  color="DeepSkyBlue" >--//列宽自适应内容</font>
 gridView.BestFitColumns(); 
- --//是否可以编辑
+<font  color="DeepSkyBlue" >--//是否可以编辑</font>
 gridView.OptionsBehavior.Editable = false;
---//清楚数据
+<font  color="DeepSkyBlue" >--//清楚数据</font>
 gridControl.DataBindings.Clear();
 gridControl.DataSource = null;
 gridView.Columns.Clear();
---//
+<font  color="DeepSkyBlue" >--//添加一列单选框</font>
+gridView.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+gridView.OptionsSelection.MultiSelect = true;
+gridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+gridView.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+<font  color="DeepSkyBlue" >--//获得指定行的数据</font>
+DataRow dr =  gridView1.GetDataRow(int);第几行   DataRow
+<font  color="DeepSkyBlue" >--//获得选中的行号</font>
+int  FocusedRowHandle = gridView1.FocusedRowHandle;  
+
+
+
  
 </font>
 
