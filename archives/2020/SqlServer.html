@@ -259,7 +259,18 @@ select  * from  TAPFTINVENTORYPARTS where len(列名) <6;
 SELECT  TABLE_NAME,COLUMN_NAME  FROM  INFORMATION_SCHEMA.KEY_COLUMN_USAGE  WHERE  TABLE_NAME= 'TableName'
 <font  color="DeepSkyBlue" >--//查询一个表有多少列</font>
 SELECT count(*)  FROM information_schema.columns  WHERE table_name = 'TableName'
-
+<font  color="DeepSkyBlue" >--//创建表添加主键</font>
+CREATE TABLE [TAP].[STUDENT](
+	[NAME] [nvarchar](40) NOT NULL, --//PK主键
+	[ID] [nvarchar](40) NOT NULL,--//PK主键
+	[SEX] [nvarchar](40) NOT NULL,--//PK主键
+	[AGE] [numeric](38,0) NULL,  ---*******
+	[ADRESSS] [nvarchar](40) NULL,
+ CONSTRAINT [TableName_PK] PRIMARY KEY CLUSTERED  --//主键名
+(
+	[NAME] ASC,--主键
+	[ID] ASC,	
+))
 </font>
 								</span>
 							</pre>
