@@ -217,15 +217,12 @@ drop table #tempTable
 SELECT * FROM dbo.Member WHERE ID  IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
 <font  color="DeepSkyBlue" >--//清除某一列重复的数据</font>
 DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
-
 <font  color="DeepSkyBlue" >--//可以对表更改添加一列</font>
 ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
 alter table dbo.table_1  drop column [ID]（删除某一列）
 </font>
 								</span>
-							</pre>
-										
-								
+							</pre>																		
 							</figure>
 <h3 id=""><p><font size="5" color="Aqua" >2.sql 基本应用 </font></h3>
 							<figure class="highlight bash">
@@ -235,7 +232,6 @@ alter table dbo.table_1  drop column [ID]（删除某一列）
 <font size="4">	
 <font  color="DeepSkyBlue" > --//查询添加一列连续的自增列</font>
 select  *,ROW_NUMBER()  over(order by getdate() ) as ROW_NUMBER from TableName
-
 <font  color="DeepSkyBlue" >--//添加数据 指定数量  时间间隔</font>
 declare @i int
 select @i=1
@@ -243,12 +239,9 @@ while @i<=477
 begin
       insert into TAPFTEQUIPMENTHISTORY(a，b，c) 
       select a, format(GETDATE()+@i,'yyyyMMddhhmmssff'),'All' from TestDate where @i=ID
-
       select @i=@i+1
-
 end
 如果不加where 条件 ， format(GETDATE()+@i,'yyyyMMddhhmmssff')是一个值
-
 <font  color="DeepSkyBlue" >--//sql server 函数</font>
 substring(列名,index,length) 截取
 select REPLACE(字段,'A','B')  from TableName  替换(A替换成B)
