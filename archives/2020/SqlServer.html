@@ -190,7 +190,7 @@
 								<p>SqlServer</p>
 							</h1>
 							<h2 id="">
-								<p><font  color="Aqua" >1.（去重）某一列明去重，删除其他数据</font></p>
+								<p><font size="5" color="Aqua" >1.（去重）某一列明去重，删除其他数据</font></p>
 							</h2>
 							
 							<figure class="highlight bash">
@@ -226,7 +226,7 @@ alter table dbo.table_1  drop column [ID]（删除某一列）
 										
 								
 							</figure>
-<h3 id=""><p><font  color="Aqua" >2.sql 基本应用 </font></h3>
+<h3 id=""><p><font size="5" color="Aqua" >2.sql 基本应用 </font></h3>
 							<figure class="highlight bash">
 <pre>
 <span class="line">
@@ -248,15 +248,17 @@ begin
 end
 如果不加where 条件 ， format(GETDATE()+@i,'yyyyMMddhhmmssff')是一个值
 
---//sql server 函数
+<font  color="DeepSkyBlue" >--//sql server 函数</font>
 substring(列名,index,length) 截取
-
 select REPLACE(字段,'A','B')  from TableName  替换(A替换成B)
-
 --//查询表得所有列名
 select name from syscolumns where id=object_id('TableName');
 --//查询指定列的长度小于
 select  * from  TAPFTINVENTORYPARTS where len(列名) <6;
+--//查询一个表的所有主键
+SELECT  TABLE_NAME,COLUMN_NAME  FROM  INFORMATION_SCHEMA.KEY_COLUMN_USAGE  WHERE  TABLE_NAME= 'TableName'
+--//查询一个表有多少列
+SELECT count(*)  FROM information_schema.columns  WHERE table_name = 'TableName'
 
 </font>
 								</span>
