@@ -185,18 +185,37 @@
 
 							<p>Welcome to XU LIN Blog .</p>
 							<h1 id="Sql Server">
-								<p>SqlServer</p>
+								<p>C#</p>
 							</h1>
 							<h2 id="">
-								<p>1.（去重）某一列明去重，删除其他数据</p>
+								<p>1.获得集合里面的所有控件</p>
 							</h2>
 							
 							<figure class="highlight bash">
 								
 						<pre>
 <span class="line">
-<font size="5">方法一：</font>
 <font size="4">	
+GetPanl(tPanel1);
+/// <summary>
+/// 
+/// </summary>
+/// <param name="control"> 集合容器</param>
+public void GetPanl(Control control)
+{
+    Control.ControlCollection controlCollection = control.Controls;
+    int i = 0;
+    foreach (Control item in controlCollection)
+    {
+        if (item is TAP.UIControls.BasicControlsDEV.TButton)
+        {
+            item.Text = "我是第" + i + "个";
+            i++;
+        }
+
+    }
+
+}
 
 </font>
 <font size="5">方法二：</font>
