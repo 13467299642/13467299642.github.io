@@ -219,7 +219,39 @@ gridView.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.
 DataRow dr =  gridView1.GetDataRow(int);第几行   DataRow
 <font  color="DeepSkyBlue" >--//获得选中的行号</font>
 int  FocusedRowHandle = gridView1.FocusedRowHandle;  
+<font  color="DeepSkyBlue" >--//DEV 导出数据 （导出一个gridView）</font>
+ SaveFileDialog saveFile = new SaveFileDialog();
+saveFile.Title = "请选择文件存放路径";
+saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
+//saveFile.FileName =  DateTime.Now.ToString("yyyyMMddHhmmss");
+if (saveFile.ShowDialog() == DialogResult.OK)
+{
+    gridView1.OptionsPrint.AutoWidth = true;
+    gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("宋体", 9);//设置格式
+    string extension = Path.GetExtension(saveFile.FileName);
+    //选择格式选择ExportToXls或者ExportToXlsx
+   if (extension.ToUpper() == ".XLS")
+   {
 
+       DevExpress.XtraPrinting.XlsExportOptions options = new DevExpress.XtraPrinting.XlsExportOptions();
+       options.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
+       options.SheetName = "";//设置exec的sheet名称
+       gridView1.ExportToXls(saveFile.FileName, options);
+
+   }
+   else if (extension.ToUpper() == ".XLSX")
+   {
+       DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions();
+       options.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
+       options.SheetName = tDateTimePicker1.DateTime.Year + "-" + tDateTimePicker1.DateTime.Month;
+       gridView1.ExportToXlsx(saveFile.FileName, options);
+
+   }
+
+}
+else {
+    return;
+}
 
 
  
