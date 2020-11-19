@@ -208,15 +208,12 @@ dbms_random.value(,)参数1至参数2之间的数据
 
 <table border="1">
        <tr>
-         <td id="showbfq" height="20" align="top"  onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='优质';}
-  else{bfq.style.display='none';showbfq.innerText='点击更多';}"><input type='button' value='aaa'></td>
+         <td id="showbfq" height="20" align="top"  onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}
+  else{bfq.style.display='none';showbfq.innerText='添加数据 添加第一条数据  然后指定间隔添加第二条数据  第三条数据';}"><font size="5" color="Aqua" >添加数据 添加第一条数据  然后指定间隔添加第二条数据  第三条数据</font></td>
        </tr>
        <tr>
-         <td height="80" align="center" name="bfq" id="bfq" style="display:none;">aaa1111111111111111111111111</td>
-       </tr>
-</table>
-<font size="5" color="Aqua" >//添加数据 添加第一条数据  然后指定间隔添加第二条数据  第三条数据</font>
-declare
+         <td height="80" align="center" name="bfq" id="bfq" style="display:none;">
+	declare
 H varchar2(5);
 M varchar2(5);
 S varchar2(5);
@@ -394,6 +391,11 @@ begin
 end LOOP;
 end LOOP;
 END;
+	 </td>
+       </tr>
+</table>
+
+
 </font></span></pre></figure>
 <h2 id=""><font size="5" color="Aqua" ><p>Oracle 连接工具</p></font></h2>	
 <figure class="highlight bash">
