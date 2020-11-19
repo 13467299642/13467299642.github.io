@@ -161,9 +161,11 @@
 					itemscope itemprop="blogPost">
 
 					<div class="article-meta">
+						<!--
 						<a href="/2020/06/19/hello-world/" class="article-date"> <time
 								datetime="2020-06-19T02:24:54.719Z" itemprop="datePublished">2020-06-19</time>
-						</a>
+						</a>-->
+						<div id="time"> </div>
 					</div>
 
 					<div class="article-inner">
@@ -205,7 +207,7 @@ to_date(sysdate,'yyyy-MM-dd HH24:mi:ss')
 select 字段1，字段2,count(*) from TableName where 1=1  group by 字段1，字段2
 select列表中的字段，如果没有在组函数中，那么必须出现在group by 子句中。
 <font size="5" color="magenta">如果select中函数 group by 中必须有查询的字段</font>
-<font size="5" color="Aqua">//Order By的使用/font>
+<font size="5" color="Aqua">//Order By的使用</font>
 order by子句置于group by 之后 并且 order by 子句的排序标准不能出现在select查询之外的列。
 <font size="5" color="Aqua">//Round()使用四舍五入/font>
 Round(123.456,1)   123.5 保留几位小数
@@ -500,11 +502,40 @@ MathJax.Hub.Queue(function() {
     }       
 });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+	<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+		<script>
+window.onload=function(){
 
-		<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+//定时器每秒调用一次fnDate()
+setInterval(function(){
+fnDate();
+},1000);
+}
 
-
-	</div>
+//js 获取当前时间
+function fnDate(){
+var oDiv=document.getElementById("time");
+var date=new Date();
+var year=date.getFullYear();//当前年份
+var month=date.getMonth();//当前月份
+var data=date.getDate();//天
+var hours=date.getHours();//小时
+var minute=date.getMinutes();//分
+var second=date.getSeconds();//秒
+var time=year+"-"+fnW((month+1))+"-"+fnW(data)+" "+fnW(hours)+":"+fnW(minute)+":"+fnW(second);
+oDiv.innerHTML=time;
+}
+//补位 当某个字段不是两位数时补0
+function fnW(str){
+var num;
+str>10?num=str:num="0"+str;
+return num;
+} 
+</script>
+</div>
 </body>
 </html>
 
