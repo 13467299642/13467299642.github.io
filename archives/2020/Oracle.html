@@ -203,7 +203,7 @@ substr('TAP0'||I, 0, 5)  参数1.string ,参数二开始位置，参数三截取
  to_char(sysdate,'yyyy-MM-dd HH24:mi:ss') 
 <font size="5" color="Aqua">//获得当前时间转化为指定格式（列明也可使是单引号固定内容，格式）</font>
 to_date(sysdate,'yyyy-MM-dd HH24:mi:ss') 
-<font size="5" color="Aqua">//Group By的使用/font>
+<font size="5" color="Aqua">//Group By的使用</font>
 select 字段1，字段2,count(*) from TableName where 1=1  group by 字段1，字段2
 select列表中的字段，如果没有在组函数中，那么必须出现在group by 子句中。
 <font size="5" color="magenta">如果select中函数 group by 中必须有查询的字段</font>
