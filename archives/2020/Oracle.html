@@ -192,13 +192,16 @@
 							<h2 id="">
 								<font size="5" color="Aqua" ><p>1.Oracle基本用法</p></font>
 							</h2>							
-							<figure class="highlight bash">	
-<pre>
-<span class="line"><font size="4">	
+<figure class="highlight bash">	<pre><span class="line"><font size="4">	
 <font size="5" color="Aqua">//查询（rowid每一行都有一个独特的rowid）</font>
 select rowid from  TableName
 <font size="5" color="Aqua">//函数</font>
 substr('TAP0'||I, 0, 5)  参数1.string ,参数二开始位置，参数三截取长度。
+<font size="5" color="Aqua">//获得当前时间转化为指定格式（当前时间，格式）</font>
+ to_char(sysdate,'yyyy-MM-dd HH24:mi:ss') 
+<font size="5" color="Aqua">//获得当前时间转化为指定格式（列明也可使是单引号固定内容，格式）</font>
+to_date(sysdate,'yyyy-MM-dd HH24:mi:ss') 
+
 <font size="5" color="Aqua" >//添加数据 添加第一条数据  然后指定间隔添加第二条数据  第三条数据</font>
 declare
 H varchar2(5);
@@ -277,8 +280,8 @@ begin
         ELSE
           DA := DD;
         END IF;
-           insert into TableNmae (FAB, TECH, LOT_CD, LOT_ID, ALIAS_LOT_ID, PROD, OPER, TM_KEY, EVENT_CD, GLASS_CNT, PNL_QTY, AREA, EQP_NAME, RECIPE,  )
-            values ('TI', 'TECH2',substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S,'LOAD', GLASS_CNT, '36',AREA,EQP_NAME, AREA||'_RECIPE_TEST');
+           insert into TableNmae (字段 )
+            values (,substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S);
            
            MM := MM + 2;
            SE := SE +1;
@@ -322,8 +325,8 @@ begin
               DA := DD;
             END IF;
                    
-           insert into TableNmae (FAB, TECH, LOT_CD, LOT_ID, ALIAS_LOT_ID, PROD, OPER, TM_KEY, EVENT_CD, GLASS_CNT, PNL_QTY, AREA, EQP_NAME, RECIPE)
-            values ('TI', 'TECH2',substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S,'JOB_START', GLASS_CNT, '36',AREA,EQP_NAME, AREA||'_RECIPE_TEST');
+           insert into TableNmae （字段)
+            values (substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S);
            HH := HH + 3;           
            MM := MM + 20;
            SE := SE +1;
@@ -368,8 +371,8 @@ begin
             END IF;
                    
            
-           insert into TableNmae (FAB, TECH, LOT_CD, LOT_ID, ALIAS_LOT_ID, PROD, OPER, TM_KEY, EVENT_CD, GLASS_CNT, PNL_QTY, AREA, EQP_NAME, RECIPE)
-            values ('TI', 'TECH2',substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S,'JOB_END', GLASS_CNT, '36',AREA,EQP_NAME, AREA||'_RECIPE_TEST');
+           insert into TableNmae (字段)
+            values (substr('TAP0'||I, 0, 5), 'TAP0'||I, substr('TAP0'||I, 0, 6), 'PRO1', K||'000', '201905'||DA||H||M||S);
            
           
      COMMIT;  
