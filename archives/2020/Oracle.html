@@ -205,6 +205,10 @@ Round(123.456,1)   123.5 保留几位小数
 Round(123.456,2)   123.46 保留几位小数
 <font size="5" color="Aqua">//随机生成指定区间的数字</font>
 dbms_random.value(,)参数1至参数2之间的数据   
+<font size="5" color="Aqua">//查询前十条数据</font>
+SELECT * FROM TableName  WHERE ROWNUM <= 10
+<font size="5" color="Aqua">//Sql Server 查询前十条数据</font>
+SELECT top 10 * FROM TableName 
 
 <table border="1">
        <tr>
