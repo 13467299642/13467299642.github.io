@@ -256,13 +256,7 @@ int  FocusedRowHandle = gridView1.FocusedRowHandle;
 </td></tr></table>
 <font  color="DeepSkyBlue" >导出多个gridView到一个exec</font>
 https://www.cnblogs.com/todayhero/p/11120921.html
-</font></span></pre></figure>
-
-<figure class="highlight bash">
-<span><pre><font size="4">	
-<table >
-<tr>
-<font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
+<table ><tr><font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
 <input  type='button' value='展开详细' name='btn2' onclick="if(bf.style.display=='none'){bf.style.display='';showbf.innerText='内容';}else{bf.style.display='none';showbf.innerText='导出数据 （导出多个gridView或者多个Table）';}"></tr> <tr> <td height="80" align="center" name="bf" id="bf" style="display:none;">	
 	   SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Title = "请选择文件存放路径";
@@ -295,6 +289,16 @@ https://www.cnblogs.com/todayhero/p/11120921.html
                     link.CreatePageForEachLink();
                     link.ExportToXls(saveFile.FileName, op);               
 </td></tr></table>
+<font  color="DeepSkyBlue" >--//使用DevExpress.XtraWaitForm.WaitForm实现加载框效果</font>
+参考：https://blog.csdn.net/weixin_30502965/article/details/94841544
+注意创建加载窗体需要拖控件ProgressPanel（DevExpress.XtraWaitForm.ProgressPanel）
+
+
+</font></span></pre></figure>
+
+<figure class="highlight bash">
+<span><pre><font size="4">	
+
 </span></pre></font></figure>
 
 							<figure class="highlight bash">
