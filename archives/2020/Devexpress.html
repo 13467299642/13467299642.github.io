@@ -263,45 +263,7 @@ int  FocusedRowHandle = gridView1.FocusedRowHandle;
 </td></tr></table>
 <font  color="DeepSkyBlue" >导出多个gridView到一个exec</font>
 https://www.cnblogs.com/todayhero/p/11120921.html
-<table border="1"><tr>
-       <font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
-       <input type='button' value='展开详细' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}
-  else{bfq.style.display='none';showbfq.innerText='导出数据 （导出多个gridView或者多个Table）';}">
-       </tr>
-       <tr>
-         <td height="80" align="center" name="bfq" id="bfq" style="display:none;">
-	
-	   SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Title = "请选择文件存放路径";
-            saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
-            //saveFile.FileName = DateTime.Now.ToString("yyyyMMddHhmmss");
-            if (saveFile.ShowDialog() == DialogResult.OK)
-            {
-                string extension = Path.GetExtension(saveFile.FileName);
-                DevExpress.XtraPrintingLinks.CompositeLink link = new DevExpress.XtraPrintingLinks.CompositeLink(new DevExpress.XtraPrinting.PrintingSystem());
-                                          
-                if (extension.ToUpper() == ".XLS")
-                {
-                    DevExpress.XtraPrinting.XlsExportOptions op = new DevExpress.XtraPrinting.XlsExportOptions();
-                    foreach (System.Data.DataTable dt in ds.Tables)
-                    {
 
-                        GridControl gridControl = new GridControl() { DataSource = dt };
-                        this.Controls.Add(gridControl);
-
-                        GridView grid = new GridView();                     
-                        gridControl.MainView = grid;
-                        grid.OptionsPrint.AutoWidth = false;//*导出时候列很不够宽
-                        op.SheetName =;//命名sheeet
-                        op.ExportMode = XlsExportMode.SingleFilePageByPage;
-                        PrintableComponentLink plink = new PrintableComponentLink { Component = gridControl };
-                        link.Links.Add(plink);
-
-                    }
-
-                    link.CreatePageForEachLink();
-                    link.ExportToXls(saveFile.FileName, op);               
-</td></tr></table>
 </font></span></pre></figure>
 
 							<figure class="highlight bash">
