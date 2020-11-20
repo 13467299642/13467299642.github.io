@@ -220,7 +220,7 @@ DataRow dr =  gridView1.GetDataRow(int);第几行   DataRow
 <font  color="DeepSkyBlue" >--//获得选中的行号</font>
 int  FocusedRowHandle = gridView1.FocusedRowHandle;  
 
-<table border="1">
+<table >
        <tr>
        <font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
        <input type='button' value='展开详细' name='btn1' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}
@@ -267,14 +267,14 @@ https://www.cnblogs.com/todayhero/p/11120921.html
 
 <figure class="highlight bash">
 	<span><pre>
-	<table border="2">
+	<table >
 <tr>
        <font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
-       <input  type='button' value='展开详细' name='btn2' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}
-  else{bfq.style.display='none';showbfq.innerText='导出数据 （导出多个gridView或者多个Table）';}">
+       <input  type='button' value='展开详细' name='btn2' onclick="if(bf.style.display=='none'){bf.style.display='';showbf.innerText='内容';}
+  else{bf.style.display='none';showbf.innerText='导出数据 （导出多个gridView或者多个Table）';}">
        </tr>
        <tr>
-         <td height="80" align="center" name="bfq" id="bfq" style="display:none;">
+         <td height="80" align="center" name="bf" id="bf" style="display:none;">
 	
 	   SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Title = "请选择文件存放路径";
