@@ -219,61 +219,110 @@ gridView.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.
 DataRow dr =  gridView1.GetDataRow(int);第几行   DataRow
 <font  color="DeepSkyBlue" >--//获得选中的行号</font>
 int  FocusedRowHandle = gridView1.FocusedRowHandle;  
-<font  color="DeepSkyBlue" >--//DEV 导出数据 （导出一个gridView）</font>
- SaveFileDialog saveFile = new SaveFileDialog();
-saveFile.Title = "请选择文件存放路径";
-saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
-//saveFile.FileName =  DateTime.Now.ToString("yyyyMMddHhmmss");
-if (saveFile.ShowDialog() == DialogResult.OK)
-{
-    gridView1.OptionsPrint.AutoWidth = true;
-    gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("宋体", 9);//设置格式
-    string extension = Path.GetExtension(saveFile.FileName);
-    //选择格式选择ExportToXls或者ExportToXlsx
-   if (extension.ToUpper() == ".XLS")
-   {
 
-       DevExpress.XtraPrinting.XlsExportOptions options = new DevExpress.XtraPrinting.XlsExportOptions();
-       options.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
-       options.SheetName = "";//设置exec的sheet名称
-       gridView1.ExportToXls(saveFile.FileName, options);
+<table border="1">
+       <tr>
+       <font size="5" color="Aqua" >导出数据 （导出一个gridView</font>
+       <input type='button' value='展开详细' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}
+  else{bfq.style.display='none';showbfq.innerText='导出数据 （导出一个gridView';}">
+       </tr>
+       <tr>
+         <td height="80" align="center" name="bfq" id="bfq" style="display:none;">
+	SaveFileDialog saveFile = new SaveFileDialog();
+	saveFile.Title = "请选择文件存放路径";
+	saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
+	//saveFile.FileName =  DateTime.Now.ToString("yyyyMMddHhmmss");
+	if (saveFile.ShowDialog() == DialogResult.OK)
+	{
+	    gridView1.OptionsPrint.AutoWidth = true;
+	    gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("宋体", 9);//设置格式
+	    string extension = Path.GetExtension(saveFile.FileName);
+	    //选择格式选择ExportToXls或者ExportToXlsx
+	   if (extension.ToUpper() == ".XLS")
+	   {
+	
+	       DevExpress.XtraPrinting.XlsExportOptions options = new DevExpress.XtraPrinting.XlsExportOptions();
+	       options.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
+	       options.SheetName = "";//设置exec的sheet名称
+	       gridView1.ExportToXls(saveFile.FileName, options);
+	
+	   }
+	   else if (extension.ToUpper() == ".XLSX")
+	   {
+	       DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions();
+	       options.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
+	       options.SheetName = tDateTimePicker1.DateTime.Year + "-" + tDateTimePicker1.DateTime.Month;
+	       gridView1.ExportToXlsx(saveFile.FileName, options);
+	
+	   }
+	
+	}
+	else {
+	    return;
+	}
+</td></tr>
+<tr>
+       <font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
+       <input type='button' value='展开详细' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}
+  else{bfq.style.display='none';showbfq.innerText='导出数据 （导出多个gridView或者多个Table）';}">
+       </tr>
+       <tr>
+         <td height="80" align="center" name="bfq" id="bfq" style="display:none;">
+	
+	   SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Title = "请选择文件存放路径";
+            saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
+            //saveFile.FileName = DateTime.Now.ToString("yyyyMMddHhmmss");
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                string extension = Path.GetExtension(saveFile.FileName);
+                DevExpress.XtraPrintingLinks.CompositeLink link = new DevExpress.XtraPrintingLinks.CompositeLink(new DevExpress.XtraPrinting.PrintingSystem());
+                                          
+                if (extension.ToUpper() == ".XLS")
+                {
+                    DevExpress.XtraPrinting.XlsExportOptions op = new DevExpress.XtraPrinting.XlsExportOptions();
+                    foreach (System.Data.DataTable dt in ds.Tables)
+                    {
 
-   }
-   else if (extension.ToUpper() == ".XLSX")
-   {
-       DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions();
-       options.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
-       options.SheetName = tDateTimePicker1.DateTime.Year + "-" + tDateTimePicker1.DateTime.Month;
-       gridView1.ExportToXlsx(saveFile.FileName, options);
+                        GridControl gridControl = new GridControl() { DataSource = dt };
+                        this.Controls.Add(gridControl);
 
-   }
+                        GridView grid = new GridView();                     
+                        gridControl.MainView = grid;
+                        grid.OptionsPrint.AutoWidth = false;//*导出时候列很不够宽
+                        op.SheetName =;//命名sheeet
+                        op.ExportMode = XlsExportMode.SingleFilePageByPage;
+                        PrintableComponentLink plink = new PrintableComponentLink { Component = gridControl };
+                        link.Links.Add(plink);
 
-}
-else {
-    return;
-}
+                    }
 
+                    link.CreatePageForEachLink();
+                    link.ExportToXls(saveFile.FileName, op);                 
+                }
+                else if (extension.ToUpper() == ".XLSX")
+                {
+                    XlsxExportOptions op = new XlsxExportOptions();//重点是Xlsx
+                    //同上
+                    link.ExportToXlsx(saveFile.FileName, op);
+                  
+                }
 
- 
-</font>
+               
 
-</span>
-							</pre>
-										
-								
-							</figure>
-<h3 id=""><p>2.sql 基本应用 </h3>
+            }
+            else {
+                return;
+            }
+
+        }
+</td></tr></table>
+<font  color="DeepSkyBlue" >导出多个gridView到一个exec</font>
+https://www.cnblogs.com/todayhero/p/11120921.html
+</font></span></pre></figure>
+
 							<figure class="highlight bash">
-<pre>
-<span class="line">
 
-
-
-</span>
-							</pre>
-							</h2>
-							
-							
 							</figure>
 
 							<figure class="highlight bash">
