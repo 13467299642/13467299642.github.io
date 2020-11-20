@@ -219,6 +219,44 @@ gridView.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.
 DataRow dr =  gridView1.GetDataRow(int);第几行   DataRow
 <font  color="DeepSkyBlue" >--//获得选中的行号</font>
 int  FocusedRowHandle = gridView1.FocusedRowHandle;  
+<font  color="DeepSkyBlue" >--//显示滚动条</font>
+ this.gridView1.OptionsView.ColumnAutoWidth = false;
+<font  color="DeepSkyBlue" >--//列表宽度自适应内容</font>
+gridView1.OptionsView.ColumnAutoWidth = false;
+for (int I = 0; I < gridView1.Columns.Count; I++)
+{
+    this.gridView1.BestFitColumns();
+    this.gridView1.Columns[I].BestFit();//自动列宽
+}
+<font  color="DeepSkyBlue" >--//拖拽时某一列不动</font>
+gridView1.Columns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+<font  color="DeepSkyBlue" >--//隐藏 GridControl 的 GroupPanel 表头</font>
+this.gridView1.OptionsView.ShowGroupPanel = false;
+<font  color="DeepSkyBlue" >--//表格框的线条去除</font>
+gridView1.Appearance.HorzLine.BackColor = Color.White;
+gridView1.Appearance.VertLine.BackColor = Color.White;
+<font  color="DeepSkyBlue" >--//隔行换色</font>
+this.gridView1.Appearance.OddRow.BackColor = Color.White;  // 设置奇数行颜色 // 默认也是白色 可以省略 
+this.gridView1.OptionsView.EnableAppearanceOddRow = true;   // 使能 // 和和上面绑定 同时使用有效 
+this.gridView1.Appearance.EvenRow.BackColor = Color.WhiteSmoke; // 设置偶数行颜色 
+this.gridView1.OptionsView.EnableAppearanceEvenRow = true;   // 使能 // 和和上面绑定 同时使用有效
+<font  color="DeepSkyBlue" >--//不可编辑</font>
+ gridView1.OptionsBehavior.Editable = false;
+<font  color="DeepSkyBlue" >--//选中每个单元格</font>
+this.gridView1.OptionsSelection.MultiSelect = true;
+<font  color="DeepSkyBlue" >--//添加单选框</font>
+gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;           
+gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+<font  color="DeepSkyBlue" >--//某一列变色</font>
+ //BackColor 背景色
+ //BackColor  BackColor2 设渐变背景
+ //ForeColor 设计字体颜色
+ gridView1.Columns["TECH"].AppearanceCell.BackColor2 = Color.Blue;
+ gridView1.Columns["TECH"].AppearanceCell.BackColor = Color.LightGreen;
+ gridView1.Columns["TECH"].AppearanceCell.ForeColor = Color.White;
+<font  color="DeepSkyBlue" >--//某一列变色</font>
+
+
 <font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
 <input type='button' value='展开详细' name='btn1' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}else{bfq.style.display='none';showbfq.innerText='导出数据 （导出一个gridView)';}">
 <table ><tr><td  height="80" align="center" name="bfq" id="bfq" style="display:none;">
