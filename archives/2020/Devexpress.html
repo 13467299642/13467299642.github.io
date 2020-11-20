@@ -221,7 +221,7 @@ DataRow dr =  gridView1.GetDataRow(int);第几行   DataRow
 int  FocusedRowHandle = gridView1.FocusedRowHandle;  
 <font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
 <input type='button' value='展开详细' name='btn1' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}else{bfq.style.display='none';showbfq.innerText='导出数据 （导出一个gridView)';}">
-<table ><tr><tr><tr><td  align="center" name="bfq" id="bfq" style="display:none;">
+<table ><tr><td  height="80" align="center" name="bfq" id="bfq" style="display:none;">
 	SaveFileDialog saveFile = new SaveFileDialog();
 	saveFile.Title = "请选择文件存放路径";
 	saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
