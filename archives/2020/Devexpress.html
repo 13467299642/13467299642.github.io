@@ -219,15 +219,11 @@ gridView.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.
 DataRow dr =  gridView1.GetDataRow(int);第几行   DataRow
 <font  color="DeepSkyBlue" >--//获得选中的行号</font>
 int  FocusedRowHandle = gridView1.FocusedRowHandle;  
-
-<table >
-       <tr>
-       <font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
+<table ><tr>
+<font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
        <input type='button' value='展开详细' name='btn1' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}
   else{bfq.style.display='none';showbfq.innerText='导出数据 （导出一个gridView)';}">
-       </tr>
-       <tr>
-         <td height="80" align="center" name="bfq" id="bfq" style="display:none;">
+       </tr><tr><td height="80" align="center" name="bfq" id="bfq" style="display:none;">
 	SaveFileDialog saveFile = new SaveFileDialog();
 	saveFile.Title = "请选择文件存放路径";
 	saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
@@ -266,16 +262,13 @@ https://www.cnblogs.com/todayhero/p/11120921.html
 </font></span></pre></figure>
 
 <figure class="highlight bash">
-	<span><pre>
-	<table >
+<span><pre><font size="4">	
+<table >
 <tr>
-       <font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
-       <input  type='button' value='展开详细' name='btn2' onclick="if(bf.style.display=='none'){bf.style.display='';showbf.innerText='内容';}
+<font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
+<input  type='button' value='展开详细' name='btn2' onclick="if(bf.style.display=='none'){bf.style.display='';showbf.innerText='内容';}
   else{bf.style.display='none';showbf.innerText='导出数据 （导出多个gridView或者多个Table）';}">
-       </tr>
-       <tr>
-         <td height="80" align="center" name="bf" id="bf" style="display:none;">
-	
+       </tr> <tr> <td height="80" align="center" name="bf" id="bf" style="display:none;">	
 	   SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Title = "请选择文件存放路径";
             saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
@@ -307,7 +300,7 @@ https://www.cnblogs.com/todayhero/p/11120921.html
                     link.CreatePageForEachLink();
                     link.ExportToXls(saveFile.FileName, op);               
 </td></tr></table>
-</span></pre></figure>
+</span></pre></font></figure>
 
 							<figure class="highlight bash">
 								
