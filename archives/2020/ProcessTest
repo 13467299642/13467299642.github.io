@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Hello</title>
+
+<!-- keywords -->
+
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hello">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="XU LIN">
+<meta name="twitter:card" content="summary">
+
+<link rel="alternative" href="/atom.xml" title="Hello"
+	type="application/atom+xml">
+<link rel="icon" href="">
+<link rel="stylesheet" href="/css/style.css">
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1">
+</head>
+<body>
+	<div id="container">
+		<div id="particles-js"></div>
+		<div class="left-col">
+			<div class="overlay"></div>
+			<div class="intrude-less">
+				<header id="header" class="inner">
+					<a href="/" class="profilepic"> <img
+						lazy-src="/img/微信图片_20200901134748.jpg" class="js-avatar">
+
+					</a>
+
+					<hgroup>
+						<h1 class="header-author">
+							<a href="/">XU LIN</a>
+						</h1>
+					</hgroup>
+
+
+
+
+					<div class="switch-btn">
+						<div class="icon">
+							<div class="icon-ctn">
+								<div class="icon-wrap icon-house" data-idx="0">
+									<div class="birdhouse"></div>
+									<div class="birdhouse_holes"></div>
+								</div>
+								<div class="icon-wrap icon-ribbon hide" data-idx="1">
+									<div class="ribbon"></div>
+								</div>
+
+								<div class="icon-wrap icon-link hide" data-idx="2">
+									<div class="loopback_l"></div>
+									<div class="loopback_r"></div>
+								</div>
+
+
+							</div>
+
+						</div>
+						<div class="tips-box hide">
+							<div class="tips-arrow"></div>
+							<ul class="tips-inner">
+								<li>菜单</li>
+								<li>标签</li>
+								<li>友情链接</li>
+							</ul>
+						</div>
+					</div>
+
+
+					<div class="switch-area">
+						<div class="switch-wrap">
+							<section class="switch-part switch-part1">
+								<nav class="header-menu">
+									<ul>
+
+										<li><a href="/">主页</a></li>
+
+										<li><a href="/archives">所有文章</a></li>
+
+									</ul>
+								</nav>
+								<nav class="header-nav">
+									<div class="social"></div>
+								</nav>
+							</section>
+
+
+							<section class="switch-part switch-part2">
+								<div class="widget tagcloud" id="js-tagcloud"></div>
+							</section>
+
+
+
+							<section class="switch-part switch-part3">
+								<div id="js-friends">
+
+									<a target="_blank" class="main-nav-link switch-friends-link"
+										href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+								</div>
+							</section>
+						</div>
+					</div>
+				</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			<nav id="mobile-nav">
+				<div class="overlay">
+					<div class="slider-trigger"></div>
+					<h1 class="header-author js-mobile-header hide">XU LIN</h1>
+				</div>
+				<div class="intrude-less">
+					<header id="header" class="inner">
+						<div class="profilepic">
+							<img lazy-src="/img/微信图片_20200901134748.jpg" class="js-avatar">
+						</div>
+						<hgroup>
+							<h1 class="header-author">XU LIN</h1>
+						</hgroup>
+
+						<nav class="header-menu">
+							<ul>
+
+								<li><a href="/">主页</a></li>
+
+								<li><a href="/archives">所有文章</a></li>
+
+								<div class="clearfix"></div>
+							</ul>
+						</nav>
+						<nav class="header-nav">
+							<div class="social"></div>
+						</nav>
+					</header>
+				</div>
+			</nav>
+			<div class="body-wrap">
+
+				<article id="post-hello-world" class="article article-type-post"
+					itemscope itemprop="blogPost">
+
+					<div class="article-meta">
+						<!--
+						<a href="/2020/06/19/hello-world/" class="article-date"> <time
+								datetime="2020-06-19T02:24:54.719Z" itemprop="datePublished">2020-06-19</time>
+						</a>-->
+						<div id="time"> </div>
+					</div>
+
+					<div class="article-inner">
+
+						<input type="hidden" class="isFancy" />
+
+
+						<header class="article-header">
+
+
+							<h1 itemprop="name">
+								<a class="article-title" href="/2020/06/19/hello-world/">
+									Hello World </a>
+							</h1>
+
+
+						</header>
+
+
+						<div class="article-entry" itemprop="articleBody">
+
+							<p>Welcome to XU LIN Blog .</p>
+							<h1 id="Sql Server">
+								<p>ORACLE</p>
+							</h1>
+							<h2 id="">
+								<font size="5" color="Aqua" ><p>1.进程的相关使用</p></font>
+							</h2>							
+<figure class="highlight bash">	<pre><span class="line"><font size="4">	
+<font size="5" color="Aqua">//根据名称点exe 杀死进程</font>
+KillProcess（processName）打开任务管理器，查看详细信息 属性就可以看到一般都是（WeChat.exe）
+public static void KillProcess(string processName)
+    {
+        // System.Diagnostics.Process myproc = new System.Diagnostics.Process();
+        //得到所有打开的进程
+
+        foreach (Process thisproc in Process.GetProcessesByName(processName))
+        {
+            try
+            {
+                thisproc.Kill();
+                Console.WriteLine($"已杀掉{processName}进程！！！");
+            }
+            catch (Win32Exception e)
+            {
+                Console.WriteLine(e.Message.ToString());
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message.ToString());
+            }
+
+
+        }
+    }
+<font size="5" color="Aqua">//根据路径获得打开某个应用程序</font>
+Open(path);
+public static void Open(string EXEName)
+        {
+
+            try
+            {
+                System.Diagnostics.Process.Start(EXEName);//打开cmd.exe可执行文件
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e.Message.ToString());
+            }
+                        
+ }
+<font size="5" color="Aqua">//根据WeChat.exe获得安装路径</font>
+string path = GetPath();
+public static string GetPath() {
+         Process[] ps = Process.GetProcessesByName("ISEM");
+         foreach (Process p in ps)
+         {
+             path = p.MainModule.FileName.ToString();
+
+         }
+
+         return path;
+
+}
+     
+
+</font></span></pre></figure>
+
+							
+							<figure class="highlight bash">
+								
+							</figure>
+							<figure class="highlight bash">
+								
+							</figure>
+							
+							<figure class="highlight bash">
+								
+								
+							</figure>
+							<figure class="highlight bash">
+								<table>
+									<tr>
+										<td class="gutter"><pre>
+												<span class="line">1</span><br>
+											</pre></td>
+										<td class="code"><pre>
+	                                                     <span class="line">$ hexo deploy</span><br>
+											</pre></td>
+									</tr>
+								</table>
+							</figure>
+
+							
+
+						</div>
+
+						<div class="article-info article-info-index">
+					<div class="clearfix"></div>
+						</div>
+					</div>
+
+				</article>
+			</div>
+			<footer id="footer">
+				<div class="outer">
+					<div id="footer-info">
+						<div class="footer-left">&copy; 2020 XU LIN</div>
+						<div class="footer-right">
+							<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a
+								href="https://github.com/smackgg/hexo-theme-smackdown"
+								target="_blank">Smackdown</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+
+		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+		<script>
+			var yiliaConfig = {
+				fancybox : true,
+				mathjax : true,
+				animate : true,
+				isHome : true,
+				isPost : false,
+				isArchive : false,
+				isTag : false,
+				isCategory : false,
+				open_in_new : false
+			}
+		</script>
+
+		<script src="/js/main.js"></script>
+
+
+
+
+		<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+	<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+		<script>
+window.onload=function(){
+
+//定时器每秒调用一次fnDate()
+setInterval(function(){
+fnDate();
+},1000);
+}
+
+//js 获取当前时间
+function fnDate(){
+var oDiv=document.getElementById("time");
+var date=new Date();
+var year=date.getFullYear();//当前年份
+var month=date.getMonth();//当前月份
+var data=date.getDate();//天
+var hours=date.getHours();//小时
+var minute=date.getMinutes();//分
+var second=date.getSeconds();//秒
+var time=year+"-"+fnW((month+1))+"-"+fnW(data)+" "+fnW(hours)+":"+fnW(minute)+":"+fnW(second);
+oDiv.innerHTML=time;
+}
+//补位 当某个字段不是两位数时补0
+function fnW(str){
+var num;
+str>10?num=str:num="0"+str;
+return num;
+} 
+</script>
+</div>
+</body>
+</html>
+
