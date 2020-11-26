@@ -330,7 +330,32 @@ https://www.cnblogs.com/todayhero/p/11120921.html
 <font  color="DeepSkyBlue" >--//使用DevExpress.XtraWaitForm.WaitForm实现加载框效果</font>
 参考：https://blog.csdn.net/weixin_30502965/article/details/94841544
 注意创建加载窗体需要拖控件ProgressPanel（DevExpress.XtraWaitForm.ProgressPanel）
-
+<font  color="DeepPink" >--//使用根据值改变单元格的背景色</font>
+问题当改变单元格颜色后导出exec并未带颜色
+注： 在导出时使用
+DevExpress.XtraPrinting.XlsExportOptionsEx options = new DevExpress.XtraPrinting.XlsExportOptionsEx();
+options.ExportType = DevExpress.Export.ExportType.WYSIWYG;
+根据单元格内容改变颜色还有其他方法在Run Designer设计 前提在Designer设计添加列并非 gridcontrol.datasource = table
+private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
+{
+   string value = e.CellValue.ToString();
+   
+    if (value.Contains("M"))
+    {
+        e.Appearance.BackColor = Color.DodgerBlue;
+    }
+    else if (value.Contains("Y"))
+    {
+        e.Appearance.BackColor = Color.SpringGreen;
+    }                        
+}
+<font  color="DeepSkyBlue" >--//使用dev提示框</font>
+导出成功后打开导出的exce
+if (XtraMessageBox.Show("导出成功,是否打开", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+{
+    System.Diagnostics.Process.Start(fileDialog.FileName);
+}
+    
 
 </font></span></pre></figure>
 
