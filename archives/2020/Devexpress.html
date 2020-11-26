@@ -255,8 +255,6 @@ gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
  gridView1.Columns["列名"].AppearanceCell.BackColor = Color.LightGreen;
  gridView1.Columns["列名"].AppearanceCell.ForeColor = Color.White;
 <font  color="DeepSkyBlue" >--//某一列变色</font>
-
-
 <font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
 <input type='button' value='展开详细' name='btn1' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}else{bfq.style.display='none';showbfq.innerText='导出数据 （导出一个gridView)';}">
 <table ><tr><td  height="80" align="center" name="bfq" id="bfq" style="display:none;">
@@ -357,6 +355,92 @@ if (XtraMessageBox.Show("导出成功,是否打开", "提示", MessageBoxButtons
 }
 <font  color="DeepSkyBlue" >--//导出exec 列头很窄添加</font>    
 gridView1.OptionsPrint.AutoWidth = false;//*
+<font size="5" color="Aqua" >导出数据 多个datatable（普通方法比较慢添加进度条功能）</font>
+<input type='button' value='展开详细' name='btn1' onclick="if(bfqtable.style.display=='none'){bfqtable.style.display='';showbfq.innerText='内容';}else{bfqtable.style.display='none';showbfq.innerText='导出数据 （导出一个gridView)';}">
+<table ><tr><td  height="80" align="center" name="bfqtable" id="bfq" style="display:none;">
+SaveFileDialog saveFileDialog = new SaveFileDialog();
+saveFileDialog.DefaultExt = "xlsx";
+saveFileDialog.Title = "Export data to Execl table";
+saveFileDialog.Filter = "microsoft office execl files (*.xlsx)|*.xlsx";
+saveFileDialog.RestoreDirectory = true;
+
+if (saveFileDialog.ShowDialog() == DialogResult.OK)
+{
+  
+    TProgressBar tProgressBar1 = new TProgressBar();
+    dpnlRight.Controls.Add(tProgressBar1);
+    tProgressBar1.BringToFront();
+    tProgressBar1.Visible = true;
+    tProgressBar1.Width = 150;
+    tProgressBar1.Height = 30;
+    tProgressBar1.Location = new System.Drawing.Point((Parent.Width - tProgressBar1.Width) / 2 - 90, (Parent.Height - tProgressBar1.Height) / 2 - 90);
+    tProgressBar1.Properties.Maximum = 12;
+    tProgressBar1.Properties.Minimum = 0;
+    tProgressBar1.Position = 0;//当前值
+    tProgressBar1.Properties.ShowTitle = true;//是否显示进度数据   
+    tProgressBar1.Properties.PercentView = true; //是否显示百分比
+    
+    System.Reflection.Missing miss = System.Reflection.Missing.Value;
+    Microsoft.Office.Interop.Excel.Application xlapp = new Microsoft.Office.Interop.Excel.Application();
+
+    xlapp.Visible = false;
+    Workbooks workbooks = xlapp.Workbooks;
+    Workbook workbook = workbooks.Add(true);
+
+    workbook.Sheets.Add(miss, workbook.Sheets[1], ds.Tables.Count - 1, miss);
+    for (int d = 0; d < ds.Tables.Count; d++)
+    {
+        Worksheet ws = workbook.Worksheets[d + 1] as Worksheet;
+        int month = d + 1;
+        ws.Name = tDateTimePicker1.DateTime.ToString("yyyy") + "-" + month;//命名sheet
+
+        int totalCellsCount = ds.Tables[d].Columns.Count;
+        Range range = ws.Range[ws.Cells[1, 1], ws.Cells[1, ds.Tables[d].Columns.Count]];
+        //生成列
+        for (int i = 0; i < ds.Tables[d].Columns.Count; i++)
+        {
+            range.Cells[1, i + 1] = ds.Tables[d].Columns[i].ColumnName;
+            range.Interior.ColorIndex = 15;
+            range.Font.Bold = true;
+            range.Font.Size = 10;
+            range.EntireColumn.AutoFit();
+            range.EntireRow.AutoFit();
+        }
+
+        //插入数据
+        for (int r = 0; r < ds.Tables[d].Rows.Count; r++)
+        {
+            for (int i = 0; i < ds.Tables[d].Columns.Count; i++)
+            {
+                ws.Cells[r + 2, i + 1] = "'" + ds.Tables[d].Rows[r][i].ToString();
+            }
+        }
+        System.Runtime.InteropServices.Marshal.ReleaseComObject(range);
+        range = null;
+        System.Runtime.InteropServices.Marshal.ReleaseComObject(ws);
+        ws = null;
+
+        tProgressBar1.Position = d + 1;//进度条
+    }
+    ((Worksheet)workbook.Sheets[1]).Select(true);//选中第一个worksheet
+    //workbook.Close(true, miss, miss);//关闭workbook, 并保存对workbook的所有修改
+    workbook.SaveAs(saveFileDialog.FileName);
+    xlapp.DisplayAlerts = true;
+    workbook.Close();
+
+    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+    workbook = null;
+    xlapp.Quit();
+    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlapp);
+    xlapp = null;
+    GC.Collect();
+    GC.WaitForPendingFinalizers();
+
+    tProgressBar1.Dispose();
+}
+
+</td></tr></table>
+
 </font></span></pre></figure>
 
 <figure class="highlight bash">
