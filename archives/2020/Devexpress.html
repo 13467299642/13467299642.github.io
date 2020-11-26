@@ -356,8 +356,8 @@ if (XtraMessageBox.Show("导出成功,是否打开", "提示", MessageBoxButtons
 <font  color="DeepSkyBlue" >--//导出exec 列头很窄添加</font>    
 gridView1.OptionsPrint.AutoWidth = false;//*
 <font size="5" color="Aqua" >导出数据 多个datatable（普通方法比较慢添加进度条功能）</font>
-<input type='button' value='展开详细' name='btn1' onclick="if(bfqtable.style.display=='none'){bfqtable.style.display='';showbfqtable.innerText='内容';}else{bfqtable.style.display='none';showbfqtable.innerText='导出数据 （导出一个gridView)';}">
-<table ><tr><td  height="80" align="center" name="bfqtable" id="bfq" style="display:none;">
+<input type='button' value='展开详细' name='bt' onclick="if(bfqtable.style.display=='none'){bfqtable.style.display='';showbfqtable.innerText='内容';}else{bfqtable.style.display='none';showbfqtable.innerText='导出数据 （导出一个gridView)';}">
+<table ><tr><td  height="80" align="center" name="bfqtable" id="bfqtable" style="display:none;">
 SaveFileDialog saveFileDialog = new SaveFileDialog();
 saveFileDialog.DefaultExt = "xlsx";
 saveFileDialog.Title = "Export data to Execl table";
