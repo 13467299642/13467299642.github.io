@@ -254,6 +254,18 @@ gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
  gridView1.Columns["列名"].AppearanceCell.BackColor2 = Color.Blue;
  gridView1.Columns["列名"].AppearanceCell.BackColor = Color.LightGreen;
  gridView1.Columns["列名"].AppearanceCell.ForeColor = Color.White;
+<font  color="DeepSkyBlue" >--//时间格式的设定</font>
+devexpress gridcontrol里gridview中列日期格式的设置
+默认d格式结果日期格式为：2018-3-1
+这里可以改成g日期格式为：2018-3-1 09:07
+这里我们也可以指定成：yyyy-MM-dd hh:mm:ss
+结果为：2018-3-1 09:07:32
+gridView1.Columns["字段3"].DisplayFormat.FormatString = "d";
+gridView1.Columns["字段3"].DisplayFormat.FormatString = "g";
+gridView1.Columns["字段3"].DisplayFormat.FormatString = "yyyy年MM月";
+gridView1.Columns["字段3"].DisplayFormat.FormatType = FormatType.DateTime;
+参考http://www.kai8wu.com/content/artsta/102.html  
+
 <font  color="DeepSkyBlue" >--//某一列变色</font>
 <font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
 <input type='button' value='展开详细' name='btn1' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}else{bfq.style.display='none';showbfq.innerText='导出数据 （导出一个gridView)';}">
@@ -445,6 +457,7 @@ gridView1_MouseDown  和doubleclick
 DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
 双击事件，当双击空白gridView1.FocusedRowHandle=0
 gridView1_MouseDown参考https://blog.csdn.net/qq_23126581/article/details/70792202
+
 
 </font></span></pre></figure>
 
