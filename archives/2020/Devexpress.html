@@ -438,8 +438,13 @@ if (saveFileDialog.ShowDialog() == DialogResult.OK)
 
     tProgressBar1.Dispose();
 }
-
 </td></tr></table>
+<font  color="DeepSkyBlue" >--//DEV 双击事件</font>
+gridView1_MouseDown  和doubleclick
+通过行号获得选中行的dataRow
+DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+双击事件，当双击空白gridView1.FocusedRowHandle=0
+gridView1_MouseDown参考https://blog.csdn.net/qq_23126581/article/details/70792202
 
 </font></span></pre></figure>
 
