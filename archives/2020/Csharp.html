@@ -232,6 +232,21 @@ string.IsNullOrEmpty(value)
 <font  color="DeepSkyBlue" >---//判断是否包含在里面  </font>
 string value ="adffram";
 value.Contains("M")
+<font  color="DeepSkyBlue" >---//读取指定文档转化图片</font>
+1.通过路径读取文档（返回string）string text = System.IO.File.ReadAllText(路径);
+1.通过路径读取文档（返回string）
+using (StreamReader sr = new StreamReader(路径))
+{
+    string line;
+    // 从文件读取并显示行，直到文件的末尾 
+    while ((line = sr.ReadLine()) != null)
+    {
+       return line;
+    }
+}
+2. string转换byte类型 byte[] bb = Convert.FromBase64String(string );
+3. byte类型转换image   MemoryStream ms = new MemoryStream(bb);
+Image image = System.Drawing.Image.FromStream(ms);
 
 </span></pre></font>
 								
