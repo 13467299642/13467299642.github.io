@@ -220,6 +220,11 @@ DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY 
 <font  color="DeepSkyBlue" >--//可以对表更改添加一列</font>
 ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
 alter table dbo.table_1  drop column [ID]（删除某一列）
+<font  color="DeepSkyBlue" >--//模糊查询对特殊符号的处理</font>
+select * from TableName where 字段 like '%''%' ;单引号的处理
+" ---------["]   [ ---------[[]
+% ---------[%]   _ ---------[_]
+^ ---------[^]
 </font>
 								</span>
 							</pre>																		
