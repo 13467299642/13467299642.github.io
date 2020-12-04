@@ -226,6 +226,10 @@ DateTime.DaysInMonth（int,int）年份，月份
 <font  color="DeepSkyBlue" >---//判断是否是数字 </font>
 Regex regNum = new Regex("^[0-9]");
 regNum.IsMatch（String ）; 返回值Bool
+<font  color="DeepSkyBlue" >---//判断是数字还是字母 </font>
+Regex.IsMatch(string, @"^[+-]?\d*[.]?\d*$"
+<font  color="DeepSkyBlue" >---//判断这一天是星期几</font>
+DateTime.now.DayOfWeek.ToString().ToUpper() == "SATURDAY" 写英文的星期
 <font  color="DeepSkyBlue" >---//就是检查字符串长度是否超过int，不超过的左侧加0补足到int的长度 </font>
 String.PadLeft(int,'0')   参数另行（int，char）
 <font  color="DeepSkyBlue" >---//获得路径的后缀</font>
