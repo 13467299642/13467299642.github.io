@@ -213,6 +213,16 @@ drop table #tempTable
 <font size="5">方法二：</font>
 <font size="4">
 前提数据中有一列id唯一。
+<font  color="DeepSkyBlue" >--//SQL server 中Merge Into的用法</font>
+参考：https://blog.csdn.net/u014361482/article/details/87856204
+主要用法  把表a的数据添加到表b，在要修改数据很多的时候可以参考
+可以条件满足某些条件的情况下进行修改
+不满足的条件下进行添加语句
+<font  color="DeepSkyBlue" >--//SQL 中OPENQUERY的使用</font>
+OpenQuery 是SQL Server用来与其他Server交互的一种技术，通过OpenQuery，SQL Server 可以直接访问其他数据库资源。
+而其他数据库在OpenQuery 表达式中是以Linked Server 存在的。 使用sp_linkedservers 可以找到当前数据库的所有linked server.
+参考：https://www.cnblogs.com/heibai-ma/p/9947761.html
+Select * from OpenQuery（[linkedServerName],'Select * from TableName')
 <font  color="DeepSkyBlue" >--//查询某一列不重复的记录</font>
 SELECT * FROM dbo.Member WHERE ID  IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
 <font  color="DeepSkyBlue" >--//清除某一列重复的数据</font>
