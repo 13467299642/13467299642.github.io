@@ -256,6 +256,12 @@ select name from syscolumns where id=object_id('TableName');
 select  * from  TAPFTINVENTORYPARTS where len(列名) <6;
 <font  color="DeepSkyBlue" >--//查询一个表的所有主键</font>
 SELECT  TABLE_NAME,COLUMN_NAME  FROM  INFORMATION_SCHEMA.KEY_COLUMN_USAGE  WHERE  TABLE_NAME= 'TableName'
+<font  color="DeepSkyBlue" >--//sql server 查询表字段及类型</font>
+select b.name as tablename,a.name as columnname,c.name as typename,a.max_length as typelength
+from sys.columns a inner join sys.tables b on b.object_id=a.object_id 
+inner join sys.types c on c.system_type_id=a.system_type_id 
+where b.name='tablename'
+order by b.name,a.column_id
 <font  color="DeepSkyBlue" >--//查询一个表有多少列</font>
 SELECT count(*)  FROM information_schema.columns  WHERE table_name = 'TableName'
 <font  color="DeepSkyBlue" >--//SQL server 中Merge Into的用法</font>
