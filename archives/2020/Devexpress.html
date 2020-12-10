@@ -243,6 +243,8 @@ for (int I = 0; I < gridView1.Columns.Count; I++)
 }
 <font  color="DeepSkyBlue" >--//拖拽时某一列不动</font>
 gridView1.Columns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+<font  color="DeepSkyBlue" >--//textbox只读</font>
+ this.textbox.Properties.ReadOnly = true;
 <font  color="DeepSkyBlue" >--//隐藏 GridControl 的 GroupPanel 表头</font>
 this.gridView1.OptionsView.ShowGroupPanel = false;
 <font  color="DeepSkyBlue" >--//表格框的线条去除</font>
