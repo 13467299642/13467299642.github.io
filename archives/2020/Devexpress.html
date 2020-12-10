@@ -206,6 +206,17 @@ gridControl.DataSource = DataTable;
 gridView.Columns[下表或者列明].Width = 80;
 <font  color="DeepSkyBlue" >--//列宽自适应内容</font>
 gridView.BestFitColumns(); 
+<font  color="DeepSkyBlue" >--//DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;</font>
+默认的是左右修改属性上下    this.splitContainerControl1.Horizontal = false;
+<font  color="DeepSkyBlue" >--//修改名称使用Caption属性</font>
+gridView1.Columns["字段"].Caption = "PROCESS"; 某个字段修改
+<font  color="DeepSkyBlue" >--//DevExpress.XtraNavBar.NavBarControl navBarControl1</font>
+修改现实名字Caption
+右键Add group     右键group style 选择最后一个添加控件
+DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
+this.navBarGroup14.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+
+
 <font  color="DeepSkyBlue" >--//是否可以编辑</font>
 gridView.OptionsBehavior.Editable = false;
 <font  color="DeepSkyBlue" >--//清楚数据</font>
