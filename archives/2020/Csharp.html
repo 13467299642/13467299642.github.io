@@ -218,6 +218,14 @@ public void GetPanl(Control control)
 <h2 id=""><font size="5" color="Aqua" ><p>2.C#的基本使用</p></font></h2>			
 <figure class="highlight bash">
 <pre><span class="line"><font size="4">	
+<font  color="DeepSkyBlue" >--//c#中的三元运算符</font>
+C#中有一个三元运算符“?:”，语法为：条件表达式？表达式1：表达式2；
+该操作首先求出条件表达式的值(bool类型)，为true时调用表达式1，为flase时调用表达式2。其逻辑为：“如果为真执行第一个，否则执行第二个。
+其实和if else 差不多 例如  a=3>4?3:4;输出为4。       a=3<4?3:4;输出为3。
+<font  color="DeepSkyBlue" >--//C#中DataTable中的Compute方法使用收集</font>
+DataTable.Compute(“expression”,”filter”);  参数一函数，参数二筛选条件
+Expression： sum(列名)，avg(列名)，sum(列名)，min(列名)，max(列名)，count(列名) 
+参考：https://blog.csdn.net/hello_mr_anan/article/details/81772803
 <font  color="DeepSkyBlue" >--//讲项目打包成.exe应用程序</font>
 生成后再Debug下有  两个文件.exe和msi  一起
 https://www.cnblogs.com/kiba/p/11052619.html
@@ -269,7 +277,7 @@ Image image = System.Drawing.Image.FromStream(ms);
 dataTable.DefaultView.RowFilter就是对table操作不返回
 dataTable.Select()返回 datarow[] 数组需要进行处理
 最后采用datatable.Rows.Add(dataRow[0]);  或者  dT.ImportRow(dataRow[0]);
-dataTable.DefaultView.Sort = "字段 asc";对table排序
+dataTable.DefaultView.Sort = "字段 asc";对table排序(排序字段为int类型)
 
 </span></pre></font>
 </figure>
