@@ -242,6 +242,11 @@ PadRight 实现右边补足，Eg：String.PadRight (10,'0'),就是检查字符�
 <font  color="DeepSkyBlue" >---//判断是否包含在里面  </font>
 string value ="adffram";
 value.Contains("M")
+<font  color="DeepSkyBlue" >---//C# 基础之Const</font>
+使用 const 关键字来声明某个常量字段或常量局部变量。常量字段和常量局部变量不是变量并且不能修改。 
+常量可以为数字、布尔值、字符串或 null 引用（Constants can be numbers, Boolean values, strings, or a null reference）
+（简单理解private 声明。声明的时候初始化并且赋予值，只读的。
+却别与readonly 也是只读的，可以public  修饰，并且可以多次赋予值不一定在声明时赋值）
 <font  color="DeepSkyBlue" >---//读取指定文档转化图片</font>
 1.通过路径读取文档（返回string）string text = System.IO.File.ReadAllText(路径);
 1.通过路径读取文档（返回string）
@@ -257,15 +262,18 @@ using (StreamReader sr = new StreamReader(路径))
 2. string转换byte类型 byte[] bb = Convert.FromBase64String(string );
 3. byte类型转换image   MemoryStream ms = new MemoryStream(bb);
 Image image = System.Drawing.Image.FromStream(ms);
+</span></pre></font></figure>
+<h2 id=""><font size="5" color="Aqua" ><p>2.C# Datatable的基本使用</p></font></h2>	
+<figure class="highlight bash">
+<pre><span class="line"><font size="4">
+
+<font  color="DeepSkyBlue" >---//datatable 获得他的视图然后进行筛选</font>
+dataTable.DefaultView.RowFilter就是对本事操作不返回
+dataTable.Select()返回 datarow[] 数组需要进行处理
+最后采用datatable.Rows.Add(dataRow[0]);  或者  dT.ImportRow(dataRow[0]);
 
 </span></pre></font>
-								
-							</figure>
-
-							
-							<figure class="highlight bash">
-								
-							</figure>
+</figure>
 							<figure class="highlight bash">
 								
 							</figure>
