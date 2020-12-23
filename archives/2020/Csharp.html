@@ -267,7 +267,7 @@ using (StreamReader sr = new StreamReader(路径))
 3. byte类型转换image   MemoryStream ms = new MemoryStream(bb);
 Image image = System.Drawing.Image.FromStream(ms);
 </span></pre></font></figure>
-<h2 id=""><font size="5" color="Aqua" ><p>2.C# Datatable的基本使用</p></font></h2>	
+<h2 id=""><font size="5" color="Aqua" ><p>3.C# Datatable的基本使用</p></font></h2>	
 <figure class="highlight bash"><pre><span class="line"><font size="4">
 <font  color="DeepSkyBlue" >---//datatable 获得他的视图然后进行筛选</font>
 dataTable.DefaultView.RowFilter就是对table操作不返回
@@ -278,11 +278,14 @@ dataTable.DefaultView.Sort = "字段 asc";对table排序(排序字段为int类�
 DataTable.Compute(“expression”,”filter”);  参数一函数，参数二筛选条件
 Expression： sum(列名)，avg(列名)，sum(列名)，min(列名)，max(列名)，count(列名) 
 参考：https://blog.csdn.net/hello_mr_anan/article/details/81772803
-</span></pre></font>
-</figure>
-							<figure class="highlight bash">
-								
-							</figure>
+</span></pre></font></figure>
+<h2 id=""><font size="5" color="Aqua" ><p>4.C# EXEC</p></font></h2>		
+<figure class="highlight bash"><pre><span class="line"><font size="4">
+IWorkbook workbook = new HSSFWorkbook();对应类型.xls
+IWorkbook workbook = new XSSFWorkbook();对应类型.xlsx
+用workbook创建sheet参数sheetName   ISheet sheet = workbook.CreateSheet(lblEqpCard.Text);
+
+</span></pre></font></figure>
 							
 							<figure class="highlight bash">
 								
