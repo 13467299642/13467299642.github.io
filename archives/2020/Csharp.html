@@ -215,6 +215,11 @@ C#中有一个三元运算符“?:”，语法为：条件表达式？表达式1
 <font  color="DeepSkyBlue" >--//讲项目打包成.exe应用程序</font>
 生成后再Debug下有  两个文件.exe和msi  一起
 https://www.cnblogs.com/kiba/p/11052619.html
+<font  color="DeepSkyBlue" >--//List集合去重</font>
+ List<string> list = new List<string>():
+list.Distinct().ToList()
+list.Distinct().ToList().Count()数量
+list.Distinct().ToList()[0]下标获得值
 <font  color="DeepSkyBlue" >--//获得指定时间的天数</font>
 DateTime.DaysInMonth（int,int）年份，月份
 <font  color="DeepSkyBlue" >---//判断是否是数字 </font>
@@ -319,6 +324,44 @@ cellpwd.SetCellValue("密码");
 var celltype = row.CreateCell(3);
 celltype.SetCellValue("类型");
 
+<font  color="DeepSkyBlue" >--//最后</font>
+FileStream file = new FileStream(saveFileExcel.FileName, FileMode.CreateNew, FileAccess.Write);
+ workbook.Write(file);
+ file.Dispose();
+<font  color="DeepSkyBlue" >--//Datatable 存取excel</font>
+private void dataTableToCsv(DataTable table, string file)
+{
+    string title = "";
+    FileStream fs = new FileStream(file, FileMode.OpenOrCreate);
+    //FileStream fs1 = File.Open(file, FileMode.Open, FileAccess.Read);
+    StreamWriter sw = new StreamWriter(new BufferedStream(fs), System.Text.Encoding.Default);
+    for (int i = 0; i < table.Columns.Count; i++)
+    {
+        title += table.Columns[i].ColumnName + "\t"; //栏位：自动跳到下一单元格
+    }
+    title = title.Substring(0, title.Length - 1) + "\n";
+    sw.Write(title);
+    foreach (DataRow row in table.Rows)
+    {
+        string line = "";
+        for (int i = 0; i < table.Columns.Count; i++)
+       {
+            line += row[i].ToString().Trim() + "\t"; //内容：自动跳到下一单元格
+
+        }
+        line = line.Substring(0, line.Length - 1) + "\n";
+        sw.Write(line);
+    }
+    sw.Close();
+    fs.Close();
+}
+<font  color="DeepSkyBlue" >--//弹框选择类型</font>
+SaveFileDialog saveFile = new SaveFileDialog();
+saveFile.Title = "请选择文件存放路径";
+saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
+//saveFile.FileName =  DateTime.Now.ToString("yyyyMMddHhmmss");
+if (saveFile.ShowDialog() == DialogResult.OK)
+{}
 
 </span></pre></font></figure>
 							
