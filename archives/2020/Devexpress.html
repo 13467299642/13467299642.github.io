@@ -205,7 +205,8 @@ gridControl.DataSource = DataTable;
 <font  color="DeepSkyBlue" >--//改变某一列的宽度（下标或者列明）</font>
 gridView.Columns[下表或者列明].Width = 80;
 <font  color="DeepSkyBlue" >--//列宽自适应内容</font>
-gridView.BestFitColumns(); 
+gridView1.OptionsView.ColumnAutoWidth = false;
+ gridView1.BestFitColumns();
 <font  color="DeepSkyBlue" >--//DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;</font>
 默认的是左右修改属性上下    this.splitContainerControl1.Horizontal = false;
 <font  color="DeepSkyBlue" >--//修改名称使用Caption属性</font>
@@ -215,11 +216,13 @@ gridView1.Columns["字段"].Caption = "PROCESS"; 某个字段修改
 右键Add group     右键group style 选择最后一个添加控件
 DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
 this.navBarGroup14.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-
-
 <font  color="DeepSkyBlue" >--//是否可以编辑</font>
 gridView.OptionsBehavior.Editable = false;
-<font  color="DeepSkyBlue" >--//清楚数据</font>
+<font  color="DeepSkyBlue" >--//禁止列头移动</font>
+gridView1.OptionsCustomization.AllowColumnMoving = false;
+<font  color="DeepSkyBlue" >--//禁止列头排序</font>
+gridView1.OptionsCustomization.AllowSort = false;
+<font  color="DeepSkyBlue" >--//清除数据</font>
 gridControl.DataBindings.Clear();
 gridControl.DataSource = null;
 gridView.Columns.Clear();
