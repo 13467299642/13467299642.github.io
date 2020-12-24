@@ -362,6 +362,22 @@ saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
 //saveFile.FileName =  DateTime.Now.ToString("yyyyMMddHhmmss");
 if (saveFile.ShowDialog() == DialogResult.OK)
 {}
+<font  color="DeepSkyBlue" >--//将table遍历添加到指定位置</font>
+IRow row1;
+int num = 14;从14行开始添加
+if (dataTable.Rows.Count > 0)
+{
+    for (int i = 0; i < dataTable.Rows.Count; i++)
+    {
+        row1 = sheet.CreateRow(num + i);
+        row1.CreateCell(0).SetCellValue(dataTable.Rows[i][i].ToString());第一列或者通过列名指定某一列
+        row1.CreateCell(1).SetCellValue(dataTable.Rows[i][i+1].ToString());
+        row1.CreateCell(2).SetCellValue(dataTable.Rows[i][i+2].ToString());
+        row1.CreateCell(3).SetCellValue(dataTable.Rows[i][i + 3].ToString());
+        row1.CreateCell(4).SetCellValue(dataTable.Rows[i][i + 4].ToString());
+
+    }
+}
 
 </span></pre></font></figure>
 							
