@@ -284,6 +284,34 @@ Expression： sum(列名)，avg(列名)，sum(列名)，min(列名)，max(列名
 IWorkbook workbook = new HSSFWorkbook();对应类型.xls
 IWorkbook workbook = new XSSFWorkbook();对应类型.xlsx
 用workbook创建sheet参数sheetName   ISheet sheet = workbook.CreateSheet(sheetName);
+保存图片需要将图片转成byte的格式 然后用NPOI引用的IWorkbook workbook, ISheet sheet来处理
+参数七是imgage转成的byte  参考网址https://blog.csdn.net/us2019/article/details/105403159
+private static void Picture(IWorkbook workbook, ISheet sheet, int x, int y, int xc, int yc,byte[] bytes)
+{  
+    //第二步：将图片添加到workbook中  指定图片格式 返回图片所在workbook->Picture数组中的索引地址（从1开始）
+    int pictureIdx = workbook.AddPicture(bytes, NPOI.SS.UserModel.PictureType.JPEG);
+    //第三步：在sheet中创建画部
+   IDrawing patriarch = sheet.CreateDrawingPatriarch();
+    //第四步：设置锚点 （在起始单元格的X坐标0-1023，Y的坐标0-255，在终止单元格的X坐标0-1023，Y的坐标0-255，起始单元格行数，列数，终止单元格行数，列数）
+    IClientAnchor anchor = patriarch.CreateAnchor(0, 0, 0, 0, x, y, xc, yc);
+    //第五步：创建图片
+    NPOI.SS.UserModel.IPicture pict = patriarch.CreatePicture(anchor, pictureIdx);
+}
+参考：https://blog.csdn.net/fenglele_fans/article/details/79268884方式很多
+//将image转换成byte[]数据
+private byte[] imageToByte(System.Drawing.Image _image)
+{
+    MemoryStream ms = new MemoryStream();
+    _image.Save(ms,System.Drawing.Imaging.ImageFormat.Jpeg);
+    return  ms.ToArray();
+}
+//将byte[]数据转换成image
+private Image byteToImage(byte[]  myByte)
+{
+     MemoryStream ms = new MemoryStream(myByte);
+     Image _Image = Image.FromStream(ms);
+     return _Image;
+}
 
 </span></pre></font></figure>
 							
