@@ -222,6 +222,11 @@ list.Distinct().ToList().Count()数量
 list.Distinct().ToList()[0]下标获得值
 <font  color="DeepSkyBlue" >--//获得指定时间的天数</font>
 DateTime.DaysInMonth（int,int）年份，月份
+List<string> columnNameList = new List<string>();
+ foreach (DataColumn col in dataDt.Columns)
+{
+        columnNameList.Add(col.ColumnName);//获取到DataColumn列对象的列名
+}
 <font  color="DeepSkyBlue" >--//is  和 as 的使用</font>
 参考https://blog.csdn.net/pitt_xiong/article/details/7409875
 比较 是否是这个类型   
@@ -240,6 +245,12 @@ String.PadLeft(int,'0')   参数另行（int，char）
 string extension = Path.GetExtension(_excelFilePath);
 <font  color="DeepSkyBlue" >---//判断是否为空</font>
 string.IsNullOrEmpty(value)
+<font  color="DeepSkyBlue" >--//is  和 as 的使用</font>
+List<string> columnNameList = new List<string>();
+foreach (DataColumn col in dataDt.Columns)
+{
+ columnNameList.Add(col.ColumnName);//获取到DataColumn列对象的列名
+}
 <font  color="DeepSkyBlue" >---//C# 中 PadLeft ,PadRight的用法</font>
 PadLeft 实现左边补足，Eg：String.PadLeft(10,'0'),就是检查字符串长度是否超过10，不超过的左侧加0补足到10的长度
 PadRight 实现右边补足，Eg：String.PadRight (10,'0'),就是检查字符串长度是否超过10，不超过的右侧加0补足到10的长度
