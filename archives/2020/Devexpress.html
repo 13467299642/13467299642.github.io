@@ -200,6 +200,22 @@
 <font size="4">	
 <font  color="DeepSkyBlue" >--//dev  gridView属性</font>
 https://www.cnblogs.com/LikeHeart/p/6729387.html
+<font  color="DeepSkyBlue" >--//dev  gridView某一行字体变色</font>
+gridView1_CustomDrawCell（）
+if (gridView1.GetDataRow(e.RowHandle)["列名"].ToString().ToUpper() == "想要的值")
+{
+    e.Appearance.ForeColor = Color.Blue;//字体颜色
+}
+<font  color="DeepSkyBlue" >--//dev  gridView某一单元格变色</font>
+gridView1_RowCellStyle（）
+string value = e.CellValue.ToString();
+if (value.Contains("某个值"))
+{
+//渐变色背景色
+    e.Appearance.BackColor = Color.Bisque;
+    e.Appearance.BackColor2 = Color.AliceBlue;
+}
+
 <font  color="DeepSkyBlue" >--//gridView赋值</font>
 gridControl.DataSource = DataTable;
 <font  color="DeepSkyBlue" >--//改变某一列的宽度（下标或者列明）</font>
