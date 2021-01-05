@@ -244,6 +244,43 @@ List<string> columnNameList = new List<string>();
 比较 是否是这个类型   
 is的话返回 bool  true和false
 as的使用时失败 返回null 
+<font  color="DeepSkyBlue" >--//treeView1的使用 添加值</font>
+private void TressView_Load(object sender, EventArgs e)
+{
+    TreeNode[]  FuJieDian = new TreeNode[10];
+    for (int i = 0; i < 10; i++)
+    {
+        TreeNode children = new TreeNode("我是第"+i.ToString(), ZIGetTreeNodes());
+        FuJieDian[i] = children;
+    }    
+    treeView1.Nodes.AddRange(FuJieDian);
+}
+//数组的方式
+public TreeNode[] ZIGetTreeNodes() {
+    TreeNode[] children = new TreeNode[5];
+    for (int i = 0; i < 5; i++)
+    {
+        TreeNode child = new TreeNode(i.ToString()+"****");
+        child.Name = i.ToString() + "****";
+        child.Text = i.ToString() + "****";
+        children[i] = child;
+    }
+    return children;
+}
+//集合的方式
+public TreeNode[] jiheGetTreeNodes()
+{
+    List<TreeNode> list = new List<TreeNode>();
+    for (int i = 0; i < 5; i++)
+    {
+        TreeNode child = new TreeNode(i.ToString() + "****");            
+        child.Name = i.ToString() + "****";
+        child.Text = i.ToString() + "****";
+        list.Add(child);
+        //Zitree.Add(children);
+    }
+    return list.ToArray();
+}
 <font  color="DeepSkyBlue" >---//判断是否是数字 </font>
 Regex regNum = new Regex("^[0-9]");
 regNum.IsMatch（String ）; 返回值Bool
