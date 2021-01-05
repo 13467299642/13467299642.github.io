@@ -202,6 +202,7 @@
 https://www.cnblogs.com/LikeHeart/p/6729387.html
 <font  color="DeepSkyBlue" >--//dev  gridView根据行号获得一行数据 选中的行</font>
 DataRow currentDr = this.gridView1.GetDataRow(this.gridView1.FocusedRowHandle);
+
 <font  color="DeepSkyBlue" >--//dev  gridView某一行字体变色</font>
 gridView1_CustomDrawCell（）
 if (gridView1.GetDataRow(e.RowHandle)["列名"].ToString().ToUpper() == "想要的值")
@@ -301,7 +302,8 @@ gridView1.Columns["字段3"].DisplayFormat.FormatString = "g";
 gridView1.Columns["字段3"].DisplayFormat.FormatString = "yyyy年MM月";
 gridView1.Columns["字段3"].DisplayFormat.FormatType = FormatType.DateTime;
 参考http://www.kai8wu.com/content/artsta/102.html  
-
+<font  color="DeepSkyBlue" >--//获得gridControl1的数据/font>
+DataTable dt = gridControl1.DataSource as DataTable;
 <font  color="DeepSkyBlue" >--//某一列变色</font>
 <font size="5" color="Aqua" >导出数据 （导出一个gridView)</font>
 <input type='button' value='展开详细' name='btn1' onclick="if(bfq.style.display=='none'){bfq.style.display='';showbfq.innerText='内容';}else{bfq.style.display='none';showbfq.innerText='导出数据 （导出一个gridView)';}">
