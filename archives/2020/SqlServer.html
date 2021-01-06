@@ -255,6 +255,9 @@ FROM  table1)a  where table2.NAME=a.name
 张三  70
 李四  80
 王五  100
+<font  color="DeepSkyBlue" > --//left join  on</font>
+简单理解 以坐标为基准 
+select * from a left join b on a.字段-b.字段
 <font  color="DeepSkyBlue" > --//查询添加一列连续的自增列</font>
 select  *,ROW_NUMBER()  over(order by getdate() ) as ROW_NUMBER from TableName
 <font  color="DeepSkyBlue" >--//添加数据 指定数量  时间间隔</font>
