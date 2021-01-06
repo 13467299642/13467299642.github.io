@@ -232,8 +232,7 @@ select * from TableName where 字段 like '%''%' ;单引号的处理
 							<figure class="highlight bash">
 <pre>
 <span class="line">
-<font size="5">添加数据</font>
-<font size="4">	
+<font size="5">添加数据</font><font size="4">	
 <font  color="DeepSkyBlue" > --//取某几列最大的值然后添加到其他表</font>
 在表1中求出最高成绩添加到表2中  
 table1
@@ -252,6 +251,10 @@ name  最搞成绩
 王五   null
 update table2 set 最搞成绩=a.最高成绩  from (SELECT  name,( SELECT   MAX(最高成绩)FROM   ( VALUES ( [语文]), ( [数学]),( [英语])) AS UpdateDate ( 最高成绩 )) AS 最高成绩
 FROM  table1)a  where table2.NAME=a.name
+最终效果
+张三  70
+李四  80
+王五  100
 <font  color="DeepSkyBlue" > --//查询添加一列连续的自增列</font>
 select  *,ROW_NUMBER()  over(order by getdate() ) as ROW_NUMBER from TableName
 <font  color="DeepSkyBlue" >--//添加数据 指定数量  时间间隔</font>
