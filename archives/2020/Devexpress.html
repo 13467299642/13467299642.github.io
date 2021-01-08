@@ -202,7 +202,12 @@
 https://www.cnblogs.com/LikeHeart/p/6729387.html
 <font  color="DeepSkyBlue" >--//dev  gridView根据行号获得一行数据 选中的行</font>
 DataRow currentDr = this.gridView1.GetDataRow(this.gridView1.FocusedRowHandle);
-
+<font  color="DeepSkyBlue" >--//dev  gridView根据行号获得一行数据 选中的行</font>
+TabPane的使用    DevExpress.XtraBars.Navigation.TabPane
+中添加DevExpress.XtraBars.Navigation.TabNavigationPage在第一个页面最下有加号
+中添加DevExpress.XtraNavBar.NavBarControl  里面是DevExpress.XtraNavBar.NavBarGroup
+中添加修改 groupstyle  为control  控件集合
+如果添加下个group直接右键添加
 <font  color="DeepSkyBlue" >--//dev  gridView某一行字体变色</font>
 gridView1_CustomDrawCell（）
 if (gridView1.GetDataRow(e.RowHandle)["列名"].ToString().ToUpper() == "想要的值")
@@ -218,7 +223,6 @@ if (value.Contains("某个值"))
     e.Appearance.BackColor = Color.Bisque;
     e.Appearance.BackColor2 = Color.AliceBlue;
 }
-
 <font  color="DeepSkyBlue" >--//gridView赋值</font>
 gridControl.DataSource = DataTable;
 <font  color="DeepSkyBlue" >--//改变某一列的宽度（下标或者列明）</font>
