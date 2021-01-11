@@ -212,6 +212,11 @@ drop table #tempTable
 <font size="5">方法二：</font>
 <font size="4">
 前提数据中有一列id唯一。
+<font  color="DeepSkyBlue" >--//查询两个表的差集</font>
+SELECT 字段一, 字段二 FROM table1
+EXCEPT
+(SELECT DISTINCT 字段一, 字段二 FROM table2 WHERE )
+Intersect交集  和集合的使用方法一样
 <font  color="DeepSkyBlue" >--//查询某一列不重复的记录</font>
 SELECT * FROM dbo.Member WHERE ID  IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
 <font  color="DeepSkyBlue" >--//清除某一列重复的数据</font>
