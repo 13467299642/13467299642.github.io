@@ -501,12 +501,53 @@ gridView1_MouseDown  和doubleclick
 DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
 双击事件，当双击空白gridView1.FocusedRowHandle=0
 gridView1_MouseDown参考https://blog.csdn.net/qq_23126581/article/details/70792202
-
-
 </font></span></pre></figure>
-
+<h1 id="Chart">
+	<font size="5" color="Aqua" ><p>Dev Chart：</p></font>
+</h1>
 <figure class="highlight bash">
-<span><pre><font size="4">	
+<span><pre><font size="4">
+<font  color="DeepSkyBlue" >--//dev chart/font>
+chart   -----chart stacked----------chart stacked 100% 等等...
+可以在designer设计，或者实例化
+ChartControl FullStackedBarChart = new ChartControl();创建对象
+FullStackedBarChart.Name = "FullStackedBarChart";命名  
+Series series1 = new Series("a", ViewType.StackedBar);创建系列  并命名  参数二为类型  
+Series series2 = new Series("b", ViewType.FullStackedBar);百分百的类型
+//指定颜色
+DevExpress.XtraCharts.StackedBarSeriesView stackedBarSeriesView1 = new DevExpress.XtraCharts.StackedBarSeriesView();
+stackedBarSeriesView1.Color = System.Drawing.Color.Green;
+series1.View = stackedBarSeriesView1;
+//将创建的系列添加到chart
+FullStackedBarChart.Series.AddRange(new Series[] { series1, series2 , series3 , series4 });
+//设置系列的类型数字或者string的
+series4.ArgumentScaleType = ScaleType.Qualitative;//ScaleType.Numerical;
+//设置系列的柱状宽度
+((StackedBarSeriesView)series1.View).BarWidth = 0.2;
+(FullStackedBarSeriesView)series2.View).BarWidth = 0.2;
+//Y轴设置百分比
+((XYDiagram)FullStackedBarChart.Diagram).AxisY.Label.TextPattern = "{VP:P}";
+//Y轴最大值最小值
+((XYDiagram)FullStackedBarChart.Diagram).AxisY.VisualRange.MinValue = 0;
+((XYDiagram)FullStackedBarChart.Diagram).AxisY.VisualRange.MaxValue = 90;
+
+((XYDiagram)FullStackedBarChart.Diagram).AxisX.Label.ResolveOverlappingOptions.AllowHide = false;//不允许隐藏X标签
+((XYDiagram)FullStackedBarChart.Diagram).AxisX.Label.ResolveOverlappingOptions.AllowRotate = true;//允许旋转X标签
+((XYDiagram)FullStackedBarChart.Diagram).AxisX.Label.ResolveOverlappingOptions.AllowStagger = false; //不允许错开X标签
+//填充
+FullStackedBarChart.Dock = DockStyle.Fill;
+//最后添加容器中       
+panel1.Controls.Add(FullStackedBarChart);
+//chart付之
+foreach (Series series in FullStackedBarChart.SeriesSerializable)
+{
+    string name = series.Name;
+    series.BindToData(dataTable, "xzhou", new string[] { name });
+}
+table
+name        series.Name1  series.Name2  series.Name3
+x轴第一个        0.2           0.6   
+x轴第一个        0.5            0.8
 
 </span></pre></font></figure>
 
