@@ -348,36 +348,84 @@ DataTable dt = gridControl1.DataSource as DataTable;
 https://www.cnblogs.com/todayhero/p/11120921.html
 <table ><tr><font size="5" color="Aqua" >导出数据 （导出多个gridView或者多个Table）</font>
 <input  type='button' value='展开详细' name='btn2' onclick="if(bf.style.display=='none'){bf.style.display='';showbf.innerText='内容';}else{bf.style.display='none';showbf.innerText='导出数据 （导出多个gridView或者多个Table）';}"></tr> <tr> <td height="80" align="center" name="bf" id="bf" style="display:none;">	
-	   SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Title = "请选择文件存放路径";
-            saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
-            //saveFile.FileName = DateTime.Now.ToString("yyyyMMddHhmmss");
-            if (saveFile.ShowDialog() == DialogResult.OK)
+public void DataToExcle(System.Data.DataSet ds)
+{
+    SaveFileDialog saveFile = new SaveFileDialog();
+    saveFile.Title = "请选择文件存放路径";
+    saveFile.Filter = "Excel文档(*.xls)|*.xls|Excel文档(*.xlsx)|*.xlsx";
+    //saveFile.FileName = DateTime.Now.ToString("yyyyMMddHhmmss");
+    if (saveFile.ShowDialog() == DialogResult.OK)
+    {
+        try
+        {
+            string extension = Path.GetExtension(saveFile.FileName);
+            DevExpress.XtraPrintingLinks.CompositeLink link = new DevExpress.XtraPrintingLinks.CompositeLink(new DevExpress.XtraPrinting.PrintingSystem());
+
+            if (extension.ToUpper() == ".XLS")
             {
-                string extension = Path.GetExtension(saveFile.FileName);
-                DevExpress.XtraPrintingLinks.CompositeLink link = new DevExpress.XtraPrintingLinks.CompositeLink(new DevExpress.XtraPrinting.PrintingSystem());
-                                          
-                if (extension.ToUpper() == ".XLS")
+                //DevExpress.XtraPrinting.XlsExportOptions op = new DevExpress.XtraPrinting.XlsExportOptions();
+                DevExpress.XtraPrinting.XlsExportOptionsEx op = new DevExpress.XtraPrinting.XlsExportOptionsEx();//导出带颜色
+                op.ExportType = DevExpress.Export.ExportType.WYSIWYG;
+                foreach (System.Data.DataTable dt in ds.Tables)
                 {
-                    DevExpress.XtraPrinting.XlsExportOptions op = new DevExpress.XtraPrinting.XlsExportOptions();
-                    foreach (System.Data.DataTable dt in ds.Tables)
-                    {
 
-                        GridControl gridControl = new GridControl() { DataSource = dt };
-                        this.Controls.Add(gridControl);
+                    GridControl gridControl = new GridControl() { DataSource = dt };
+                    this.Controls.Add(gridControl);
 
-                        GridView grid = new GridView();                     
-                        gridControl.MainView = grid;
-                        grid.OptionsPrint.AutoWidth = false;//*导出时候列很不够宽
-                        op.SheetName =;//命名sheeet
-                        op.ExportMode = XlsExportMode.SingleFilePageByPage;
-                        PrintableComponentLink plink = new PrintableComponentLink { Component = gridControl };
-                        link.Links.Add(plink);
+                    GridView grid = new GridView();
+                    gridControl.MainView = grid;
+                    //gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { grid });
+                    grid.OptionsPrint.AutoWidth = false;//*
+                    grid.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
+                    //gridView.OptionsPrint.AutoWidth = true;
+                    // gridView.BestFitColumns();
+                    gridControl.Visible = false;
 
-                    }
+                    op.SheetName = tDateTimePicker1.DateTime.Year + "-";
+                    op.ExportMode = XlsExportMode.SingleFilePageByPage;
+                    PrintableComponentLink plink = new PrintableComponentLink { Component = gridControl };
+                    link.Links.Add(plink);
+                }
+                link.CreatePageForEachLink();
+                link.ExportToXls(saveFile.FileName, op);
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.INFORMATION, "Export successfully.");
+            }
+            else if (extension.ToUpper() == ".XLSX")
+            {
+                //XlsxExportOptions op = new XlsxExportOptions();
+                XlsxExportOptionsEx op = new XlsxExportOptionsEx();
+                op.ExportType = DevExpress.Export.ExportType.WYSIWYG;
+                foreach (System.Data.DataTable dt in ds.Tables)
+                {
+                    GridControl gridControl = new GridControl() { DataSource = dt };
+                    this.Controls.Add(gridControl);
+                    GridView gridView = new GridView();
+                    gridControl.MainView = gridView;
+                    //gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView });
+                    gridView.OptionsPrint.AutoWidth = false;//*
+                    gridControl.Visible = false;
 
-                    link.CreatePageForEachLink();
-                    link.ExportToXls(saveFile.FileName, op);               
+                    op.SheetName = tDateTimePicker1.DateTime.Year + "-";
+                    op.ExportMode = XlsxExportMode.SingleFilePageByPage;
+                    PrintableComponentLink plink = new PrintableComponentLink { Component = gridControl };
+                    link.Links.Add(plink);
+                }
+                link.CreatePageForEachLink();
+                link.ExportToXlsx(saveFile.FileName, op);
+               
+            }
+        }
+        catch (Exception ex)
+        {
+           
+        }
+    }
+    else
+    {
+        return;
+    }
+
+}              
 </td></tr></table>
 <font  color="DeepSkyBlue" >--//使用DevExpress.XtraWaitForm.WaitForm实现加载框效果</font>
 参考：https://blog.csdn.net/weixin_30502965/article/details/94841544
