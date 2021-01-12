@@ -209,7 +209,27 @@ dbms_random.value(,)参数1至参数2之间的数据
 SELECT * FROM TableName  WHERE ROWNUM <= 10
 <font size="5" color="Aqua">//Sql Server 查询前十条数据</font>
 SELECT top 10 * FROM TableName 
-
+<font size="5" color="Aqua">//问题  出现“ORA-28000:the account is locked”</font> 
+   解决：熟悉oracle     
+    附： 1.oracle安装 完成后会实例化ORCL数据库
+        2.本人实例化自己的SA数据库和创建TAP用户。       
+  3.system@sa 加密码可以登陆 but  system@orcl  用户被  
+  4.后尝试：  
+         方法一：
+        cmd命令行下输入 sqlplus / as sysdba;
+        SQL>alter user sys identified by huozhe
+        alter user scott identified by tiger account unlock;
+         方法二：解锁
+        SQL> conn /as sysdba
+        已连接。
+        SQL> alter user system account unlock;
+        无效。
+         
+ 5.最终解决办法。  
+        1.plsql developer 登入以sysdba登入
+        2.在左边  对象中找到user文件点开，找到你要改的用户
+        3.将账户已锁定取消。
+        4.应用即可
 <table border="1">
        <tr>
        <font size="5" color="Aqua" >添加数据 添加第一条数据  然后指定间隔添加第二条数据  第三条数据</font>
@@ -227,14 +247,11 @@ DD integer;
 HH integer;
 MM integer;
 SE integer;
-
 EVENTCD varchar2(20);
 GLASS_CNT varchar2(20);
 AREA varchar2(20);
 EQP_NAME varchar2(20);
-
-begin
-  
+begin  
   FOR K IN 1..6 LOOP
   DD := 1;
   SE := 1;
