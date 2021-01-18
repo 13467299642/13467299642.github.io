@@ -336,6 +336,7 @@ CREATE TABLE [TAP].[STUDENT](
 <figure class="highlight bash">
 <pre><span><font size="4">	
 <font  color="DeepSkyBlue" >--//导出脚本操作 </font>
+导入exec exce版本问题安装AccessDatabaseEngine ，可以尝试xlsx 替换xls 导入
 选择数据库→→→→→→右键选择任务→→→→→→选择生成脚本→→→→→→选择对象  勾选要导出的表→→→→→→设置脚本编写选项选择→高级（拉到最后选择 是结构还是数据）→→→→→路径选择导出
 <font  color="DeepSkyBlue" >--//导入导出数据 </font>
 选择数据库→→→→→→右键选择任务→→→→→→选择导入数据 →→→→→→源数据选择你要导入的数据和格式类型  →→→→→→  目标导入到哪里（导入的表名可以自己写）
@@ -345,7 +346,10 @@ CREATE TABLE [TAP].[STUDENT](
 1.方法一  使用Navicat Premium 12执行被导入sql文件。   效果：缺少表空间的使用。多次尝试未果。
 2.方法二   换Clinent客户端尝试   采用sqldeveloper.exe     直接将数据A全部复制到数据B 
 方法链接：https://blog.csdn.net/keekaduo/article/details/84671323  结果OK
-
+<font  color="DeepSkyBlue" >--//端口 </font>
+Sql server 1433   用户sa
+My sql 3306     用户root
+Oracle  1521   用户sys  scott
 </font>
 </span>	
 </pre>
