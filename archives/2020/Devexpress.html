@@ -200,6 +200,22 @@
 <font size="4">	
 <font  color="DeepSkyBlue" >--//dev  gridView属性</font>
 https://www.cnblogs.com/LikeHeart/p/6729387.html
+<font  color="DeepSkyBlue" >--//数据排序</font>
+public void setDatatgridControl2()
+ {
+     DataTable dt = gridControl1.DataSource as DataTable;
+     DataTable dataTable = dt.Clone();
+     var dataRowViews1 = GetGridViewFilteredAndSortedData(gridView1);
+     foreach (DataRowView item in dataRowViews1)
+     {
+         dataTable.Rows.Add(item.Row.ItemArray);
+     }
+     gridControl2.DataSource = dataTable;
+ }
+ public System.Collections.IList GetGridViewFilteredAndSortedData(DevExpress.XtraGrid.Views.Grid.GridView view)
+ {
+     return view.DataController.GetAllFilteredAndSortedRows();
+ }
 <font  color="DeepSkyBlue" >--//dev  gridView根据行号获得一行数据 选中的行</font>
 DataRow currentDr = this.gridView1.GetDataRow(this.gridView1.FocusedRowHandle);
 <font  color="DeepSkyBlue" >--//dev  gridView根据行号获得一行数据 选中的行</font>
