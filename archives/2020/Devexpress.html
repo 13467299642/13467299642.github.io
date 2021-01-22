@@ -615,6 +615,118 @@ name        series.Name1  series.Name2  series.Name3
 x轴第一个        0.2           0.6   
 x轴第一个        0.5            0.8
 
+<font  color="DeepPink" >--//Dev ViewType.Line</font>
+private void button1_Click(object sender, EventArgs e)
+  {
+      //https://docs.devexpress.com/WindowsForms/DevExpress.XtraCharts.ChartControl
+      // Create a Chart Control object and add it to the form.
+      ChartControl chart = new ChartControl();        
+      chart.Dock = DockStyle.Fill;
+
+      splitContainerControl1.Panel1.Controls.Add(chart);
+      //this.Controls.Add(chart);
+
+      // Create a line series, bind it to data and add to the chart.
+      Series series = new Series("Temperature", ViewType.Line);
+      series.DataSource = DataPoint.GetDataPoints();
+
+
+      //list<datapoint>转换成datatable
+      //https://blog.csdn.net/hwt0101/article/details/81162942
+      DataTable dataTable = new DataTable();
+      dataTable= ToDataTable(DataPoint.GetDataPoints());
+
+      series.ArgumentDataMember = "Date";
+      series.ValueDataMembers.AddRange("Value");      
+      chart.Series.Add(series);
+ 
+      // Enable series markers.
+      LineSeriesView view = (LineSeriesView)series.View;
+      view.MarkerVisibility = DevExpress.Utils.DefaultBoolean.True;
+
+      // Display series labels and customize their text format.
+      series.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+      series.Label.ResolveOverlappingMode = ResolveOverlappingMode.HideOverlapped;
+      series.Label.TextPattern = "{V:.#}";
+
+      // Create a chart title.
+      ChartTitle chartTitle = new ChartTitle();
+      chartTitle.Text = "Temperature (°F)";
+      chart.Titles.Add(chartTitle);
+
+      // Customize axes.
+      XYDiagram diagram = chart.Diagram as XYDiagram;
+      diagram.AxisX.Label.TextPattern = "{A:MMM, d (HH:mm)}";
+      diagram.AxisX.DateTimeScaleOptions.MeasureUnit = DateTimeMeasureUnit.Hour;
+      diagram.AxisX.DateTimeScaleOptions.GridSpacing = 9;
+      diagram.AxisX.WholeRange.SideMarginsValue = 0.5;
+      diagram.AxisY.WholeRange.AlwaysShowZeroLevel = false;
+
+      // Hide a legend if necessary.
+      chart.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
+}
+<font  color="DeepPink" >--//List 集合转Datatable</font>
+public static DataTable ToDataTable<T>(IEnumerable<T> collection)
+
+      {
+
+          var props = typeof(T).GetProperties();
+
+          var dt = new DataTable();
+
+          dt.Columns.AddRange(props.Select(p => new DataColumn(p.Name, p.PropertyType)).ToArray());
+
+          if (collection.Count() > 0)
+
+          {
+
+              for (int i = 0; i < collection.Count(); i++)
+             {
+                 ArrayList tempList = new ArrayList();
+                  foreach (PropertyInfo pi in props)
+                  {
+                     object obj = pi.GetValue(collection.ElementAt(i), null);
+                      tempList.Add(obj);
+                  }
+                  object[] array = tempList.ToArray();
+                  dt.LoadDataRow(array, true);
+              }
+          }
+          return dt;
+      }
+ <font  color="DeepPink" >--//List 集合转Datatable</font>  
+  public class DataPoint
+ {
+     public DateTime Date { get; set; }
+     public double Value { get; set; }
+     public DataPoint(DateTime date, double value)
+     {
+         this.Date = date;
+         this.Value = value;
+     }
+     public static List<DataPoint> GetDataPoints()
+     {
+         List<DataPoint> data = new List<DataPoint> {
+         new DataPoint(new DateTime(2019, 6, 1, 0, 0, 0), 56.1226),
+         new DataPoint(new DateTime(2019, 6, 1, 3, 0, 0), 50.18432),
+         new DataPoint(new DateTime(2019, 6, 1, 6, 0, 0), 51.51443),
+         new DataPoint(new DateTime(2019, 6, 1, 9, 0, 0), 60.2624),
+         new DataPoint(new DateTime(2019, 6, 1, 12, 0, 0), 64.04412),
+         new DataPoint(new DateTime(2019, 6, 1, 15, 0, 0), 66.56123),
+         new DataPoint(new DateTime(2019, 6, 1, 18, 0, 0), 65.48127),
+         new DataPoint(new DateTime(2019, 6, 1, 21, 0, 0), 60.4412),
+         new DataPoint(new DateTime(2019, 6, 2, 0, 0, 0), 57.2341),
+         new DataPoint(new DateTime(2019, 6, 2, 3, 0, 0), 52.3469),
+         new DataPoint(new DateTime(2019, 6, 2, 6, 0, 0), 51.82341),
+         new DataPoint(new DateTime(2019, 6, 2, 9, 0, 0), 61.532),
+         new DataPoint(new DateTime(2019, 6, 2, 12, 0, 0), 63.8641),
+         new DataPoint(new DateTime(2019, 6, 2, 15, 0, 0), 65.12374),
+         new DataPoint(new DateTime(2019, 6, 2, 18, 0, 0), 65.6321)};
+         return data;
+     }
+ }
+
+
 </span></pre></font></figure>
 
 							<figure class="highlight bash">
