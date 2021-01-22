@@ -353,10 +353,8 @@ DataTable dt = gridControl1.DataSource as DataTable;
 	       DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions();
 	       options.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
 	       options.SheetName = tDateTimePicker1.DateTime.Year + "-" + tDateTimePicker1.DateTime.Month;
-	       gridView1.ExportToXlsx(saveFile.FileName, options);
-	
-	   }
-	
+	       gridView1.ExportToXlsx(saveFile.FileName, options);	
+	   }	
 	}
 	else {
 	    return;
