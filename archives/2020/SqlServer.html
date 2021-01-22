@@ -232,6 +232,8 @@ select * from TableName where 字段 like '%''%' ;单引号的处理
 							<figure class="highlight bash">
 <pre>
 <span class="line">
+<font size="5">iif的使用</font><font size="4">	
+select StuName,Subject,iif( Score>60,'合格','不合格' ) as '成绩'  from StuScore
 <font size="5">添加数据</font><font size="4">	
 <font  color="DeepSkyBlue" > --//取某几列最大的值然后添加到其他表</font>
 在表1中求出最高成绩添加到表2中  
