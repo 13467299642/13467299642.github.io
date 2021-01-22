@@ -723,7 +723,21 @@ public static DataTable ToDataTable<T>(IEnumerable<T> collection)
          return data;
      }
  }
-
+ <font  color="DeepSkyBlue" >--//Chart导出</font>  
+https://docs.devexpress.com/WindowsForms/DevExpress.XtraCharts.ChartControl.ExportToXls(System.IO.Stream)
+chart.ExportToXls(fullPath);
+public void ExportToXls(string filePath, XlsExportOptions options);
+public void ExportToXls(Stream stream);
+public void ExportToXls(Stream stream, XlsExportOptions options);
+public void ExportToXls(string filePath);
+public void ExportToXlsx(Stream stream);
+public void ExportToXlsx(Stream stream, XlsxExportOptions options);
+public void ExportToXlsx(string filePath, XlsxExportOptions options);
+public void ExportToXlsx(string filePath);
+ <font  color="DeepSkyBlue" >--//Chart导出（多个chart和gridControl）</font> 
+https://blog.csdn.net/u011871201/article/details/78891731?utm_source=blogxgwz2
+ExportToExcel("GridControl内容导出", chart,FullStackedBarChart);
+ 
 
 </span></pre></font></figure>
 
