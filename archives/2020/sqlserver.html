@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Hello</title>
+
+<!-- keywords -->
+
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hello">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="XU LIN">
+<meta name="twitter:card" content="summary">
+
+<link rel="alternative" href="/atom.xml" title="Hello"
+	type="application/atom+xml">
+<link rel="icon" href="">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1">
+</head>
+<body>
+	<div id="container">
+		<div id="particles-js"></div>
+		<div class="left-col">
+			<div class="overlay"></div>
+			<div class="intrude-less">
+				<header id="header" class="inner">
+					<a href="/" class="profilepic"> <img
+						lazy-src="/img/微信图片_20200901134748.jpg" class="js-avatar">
+
+					</a>
+
+					<hgroup>
+						<h1 class="header-author">
+							<a href="/">XU LIN</a>
+						</h1>
+					</hgroup>
+
+
+
+
+					<div class="switch-btn">
+						<div class="icon">
+							<div class="icon-ctn">
+								<div class="icon-wrap icon-house" data-idx="0">
+									<div class="birdhouse"></div>
+									<div class="birdhouse_holes"></div>
+								</div>
+								<div class="icon-wrap icon-ribbon hide" data-idx="1">
+									<div class="ribbon"></div>
+								</div>
+
+								<div class="icon-wrap icon-link hide" data-idx="2">
+									<div class="loopback_l"></div>
+									<div class="loopback_r"></div>
+								</div>
+
+
+							</div>
+
+						</div>
+						<div class="tips-box hide">
+							<div class="tips-arrow"></div>
+							<ul class="tips-inner">
+								<li>菜单</li>
+								<li>标签</li>
+								<li>友情链接</li>
+							</ul>
+						</div>
+					</div>
+
+
+					<div class="switch-area">
+						<div class="switch-wrap">
+							<section class="switch-part switch-part1">
+								<nav class="header-menu">
+									<ul>
+
+										<li><a href="/">主页</a></li>
+
+										<li><a href="/archives">所有文章</a></li>
+
+									</ul>
+								</nav>
+								<nav class="header-nav">
+									<div class="social"></div>
+								</nav>
+							</section>
+
+
+							<section class="switch-part switch-part2">
+								<div class="widget tagcloud" id="js-tagcloud"></div>
+							</section>
+
+
+
+							<section class="switch-part switch-part3">
+								<div id="js-friends">
+
+									<a target="_blank" class="main-nav-link switch-friends-link"
+										href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+								</div>
+							</section>
+						</div>
+					</div>
+				</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			<nav id="mobile-nav">
+				<div class="overlay">
+					<div class="slider-trigger"></div>
+					<h1 class="header-author js-mobile-header hide">XU LIN</h1>
+				</div>
+				<div class="intrude-less">
+					<header id="header" class="inner">
+						<div class="profilepic">
+							<img lazy-src="/img/微信图片_20200901134748.jpg" class="js-avatar">
+						</div>
+						<hgroup>
+							<h1 class="header-author">XU LIN</h1>
+						</hgroup>
+
+						<nav class="header-menu">
+							<ul>
+
+								<li><a href="/">主页</a></li>
+
+								<li><a href="/archives">所有文章</a></li>
+
+								<div class="clearfix"></div>
+							</ul>
+						</nav>
+						<nav class="header-nav">
+							<div class="social"></div>
+						</nav>
+					</header>
+				</div>
+			</nav>
+			<div class="body-wrap">
+
+				<article id="post-hello-world" class="article article-type-post"
+					itemscope itemprop="blogPost">
+
+					<div class="article-meta">
+					      <!--<a href="/2020/06/19/hello-world/" class="article-date"> <time
+								datetime="2020-06-19T02:24:54.719Z" itemprop="datePublished">2020-06-19</time>
+						</a>-->			
+						<div id="time"> </div>
+					</div>
+
+					<div class="article-inner">
+
+						<input type="hidden" class="isFancy" />
+
+
+						<header class="article-header">
+
+
+							<h1 itemprop="name">
+								<a class="article-title" href="/2020/06/19/hello-world/">
+									Hello World </a>
+							</h1>
+
+
+						</header>
+
+
+						<div class="article-entry" itemprop="articleBody">
+
+							<p>Welcome to XU LIN Blog .</p>
+							<h1 id="Sql Server">
+								<p>SqlServer</p>
+							</h1>
+							<h2 id="">
+								<p><font size="5" color="Aqua" >1.（去重）某一列明去重，删除其他数据</font></p>
+							</h2>
+							
+							<figure class="highlight bash">
+								
+						<pre>
+<span class="line">
+<font size="5">方法一：</font>
+<font size="4">	
+--//将源表的数据结构复制到临时表#tempTable中
+select * into #tempTable（解释：临时表） from bbb（解释：要处理的表） where 1<>1
+--//在临时表中创建索引，并忽略重复列数据
+Create unique index temp on #tempTable(去重字段) with IGNORE_DUP_KEY
+--//将源表中的数据拷贝到临时表中，拷贝的同时会忽略重复列的数据，也即只保留了一份数据。
+insert into #tempTable select * from （解释：要处理的表）
+insert into tablename(字段a,b,c)  select (字段a,b,c)  from  tablename
+drop table #tempTable
+</font>
+<font size="5">方法二：</font>
+<font size="4">
+前提数据中有一列id唯一。
+<font  color="DeepSkyBlue" >--//查询某一列不重复的记录</font>
+SELECT * FROM dbo.Member WHERE ID  IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
+<font  color="DeepSkyBlue" >--//清除某一列重复的数据</font>
+DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
+<font  color="DeepSkyBlue" >--//可以对表更改添加一列</font>
+ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
+alter table dbo.table_1  drop column [ID]（删除某一列）
+<font  color="DeepSkyBlue" >--//模糊查询对特殊符号的处理</font>
+select * from TableName where 字段 like '%''%' ;单引号的处理
+" ---------["]   [ ---------[[]
+% ---------[%]   _ ---------[_]
+^ ---------[^]
+</font>
+								</span>
+							</pre>																		
+							</figure>
+<h3 id=""><p><font size="5" color="Aqua" >2.sql 基本应用 </font></h3>
+							<figure class="highlight bash">
+<pre>
+<span class="line">
+<font size="5">iif的使用</font><font size="4">	
+select StuName,Subject,iif( Score>60,'合格','不合格' ) as '成绩'  from StuScore
+<font size="5">添加数据</font><font size="4">	
+<font  color="DeepSkyBlue" > --//取某几列最大的值然后添加到其他表</font>
+在表1中求出最高成绩添加到表2中  
+table1
+name  语文  数学  英语
+张三   50   60    70
+李四   20   80    55
+王五   30   90    100
+求最高的成绩
+SELECT  name,( SELECT   MAX(最高成绩)FROM   ( VALUES ( [语文]), ( [数学]),( [英语])) AS UpdateDate ( 最高成绩 )) AS 最高成绩
+FROM  table1
+参考网址https://www.cnblogs.com/lyhabc/p/4899244.html
+table2
+name  最搞成绩
+张三   null
+李四   null
+王五   null
+update table2 set 最搞成绩=a.最高成绩  from (SELECT  name,( SELECT   MAX(最高成绩)FROM   ( VALUES ( [语文]), ( [数学]),( [英语])) AS UpdateDate ( 最高成绩 )) AS 最高成绩
+FROM  table1)a  where table2.NAME=a.name
+最终效果
+张三  70
+李四  80
+王五  100
+<font  color="DeepSkyBlue" > --//left join  on</font>
+简单理解 以坐标为基准 
+select * from a left join b on a.字段-b.字段
+<font  color="DeepSkyBlue" >--//查询两个表的差集</font>
+SELECT 字段一, 字段二 FROM table1
+EXCEPT
+(SELECT DISTINCT 字段一, 字段二 FROM table2 WHERE )
+Intersect交集  和集合的使用方法一样
+<font  color="DeepSkyBlue" > --//查询添加一列连续的自增列</font>
+select  *,ROW_NUMBER()  over(order by getdate() ) as ROW_NUMBER from TableName
+<font  color="DeepSkyBlue" >--//添加数据 指定数量  时间间隔</font>
+declare @i int
+select @i=1
+while @i<=477
+begin
+      insert into TAPFTEQUIPMENTHISTORY(a，b，c) 
+      select a, format(GETDATE()+@i,'yyyyMMddhhmmssff'),'All' from TestDate where @i=ID
+      select @i=@i+1
+end
+如果不加where 条件 ， format(GETDATE()+@i,'yyyyMMddhhmmssff')是一个值
+<font  color="DeepSkyBlue" >--//sql server 函数</font>
+substring(列名,index,length) 截取
+select REPLACE(字段,'A','B')  from TableName  替换(A替换成B)
+<font  color="DeepSkyBlue" >--//查询表得所有列名</font>
+select name from syscolumns where id=object_id('TableName');
+<font  color="DeepSkyBlue" >--//查询指定列的长度小于</font>
+select  * from  TAPFTINVENTORYPARTS where len(列名) <6;
+<font  color="DeepSkyBlue" >--//查询一个表的所有主键</font>
+SELECT  TABLE_NAME,COLUMN_NAME  FROM  INFORMATION_SCHEMA.KEY_COLUMN_USAGE  WHERE  TABLE_NAME= 'TableName'
+<font  color="DeepSkyBlue" >--//sql server 查询表字段及类型</font>
+select b.name as tablename,a.name as columnname,c.name as typename,a.max_length as typelength
+from sys.columns a inner join sys.tables b on b.object_id=a.object_id 
+inner join sys.types c on c.system_type_id=a.system_type_id 
+where b.name='tablename'
+order by b.name,a.column_id
+<font  color="DeepSkyBlue" >--//查询一个表所有主键</font>
+SELECT a.name  
+  FROM   syscolumns a  
+  inner  join sysobjects d on a.id=d.id        
+  where  d.name='SPF_Users' and exists(SELECT 1 FROM sysobjects where xtype='PK' and  parent_obj=a.id and name in (   
+  SELECT name  FROM sysindexes   WHERE indid in(   
+  SELECT indid FROM sysindexkeys WHERE id = a.id AND colid=a.colid   
+  )))
+<font  color="DeepSkyBlue" >--//查询一个表有多少列</font>
+SELECT count(*)  FROM information_schema.columns  WHERE table_name = 'TableName'
+<font  color="DeepSkyBlue" >--//SQL server 中Merge Into的用法</font>
+参考：https://blog.csdn.net/u014361482/article/details/87856204
+主要用法  把表a的数据添加到表b，在要修改数据很多的时候可以参考
+可以条件满足某些条件的情况下进行修改
+不满足的条件下进行添加语句
+<font  color="DeepSkyBlue" >--//SQL 中OPENQUERY的使用</font>
+OpenQuery 是SQL Server用来与其他Server交互的一种技术，通过OpenQuery，SQL Server 可以直接访问其他数据库资源。
+而其他数据库在OpenQuery 表达式中是以Linked Server 存在的。 使用sp_linkedservers 可以找到当前数据库的所有linked server.
+参考：https://www.cnblogs.com/heibai-ma/p/9947761.html
+Select * from OpenQuery（[linkedServerName],'Select * from TableName')
+<font  color="DeepSkyBlue" >--//创建表添加主键</font>
+CREATE TABLE [TAP].[STUDENT](
+	[NAME] [nvarchar](40) NOT NULL, --//PK主键
+	[ID] [nvarchar](40) NOT NULL,--//PK主键
+	[SEX] [nvarchar](40) NOT NULL,--//PK主键
+	[AGE] [numeric](38,0) NULL,  ---*******
+	[ADRESSS] [nvarchar](40) NULL,
+ CONSTRAINT [TableName_PK] PRIMARY KEY CLUSTERED  --//主键名
+(
+	[NAME] ASC,--主键
+	[ID] ASC,	
+))
+<font  color="DeepSkyBlue" >--//SQL Server 连接数据库 </font>
+1.Windows 身份验证 一般用于登陆修改（本地数据库）账号密码
+在安全性---→账号名 
+2.连接远程数据数据 账号密码登陆 
+</font>
+								</span>
+							</pre>
+							</h2>		
+</figure>
+						
+<h3 id=""><p><font size="5" color="Aqua" >3.SQL 的导入导出操作 </font></h3>
+<figure class="highlight bash">
+<pre><span><font size="4">	
+<font  color="DeepSkyBlue" >--//导出脚本操作 </font>
+导入exec exce版本问题安装AccessDatabaseEngine ，可以尝试xlsx 替换xls 导入
+选择数据库→→→→→→右键选择任务→→→→→→选择生成脚本→→→→→→选择对象  勾选要导出的表→→→→→→设置脚本编写选项选择→高级（拉到最后选择 是结构还是数据）→→→→→路径选择导出
+<font  color="DeepSkyBlue" >--//导入导出数据 </font>
+选择数据库→→→→→→右键选择任务→→→→→→选择导入数据 →→→→→→源数据选择你要导入的数据和格式类型  →→→→→→  目标导入到哪里（导入的表名可以自己写）
+<font  color="DeepSkyBlue" >--//导出数据 </font>
+选择数据库→→→→→→右键选择任务→→→→→→选择导出数据 →→→→→→选择要导出的数据哭  →→→→→→  目标导出什么类型导出到哪里  （选择指定表）
+<font  color="DeepSkyBlue" >--//复制数据库 </font>
+1.方法一  使用Navicat Premium 12执行被导入sql文件。   效果：缺少表空间的使用。多次尝试未果。
+2.方法二   换Clinent客户端尝试   采用sqldeveloper.exe     直接将数据A全部复制到数据B 
+方法链接：https://blog.csdn.net/keekaduo/article/details/84671323  结果OK
+<font  color="DeepSkyBlue" >--//数据库端口 </font>
+Sql server 1433   用户sa
+My sql 3306     用户root
+Oracle  1521   用户sys  scott
+<font  color="DeepSkyBlue" >--//数据安装 </font>
+mysql 官网下载zip文件需要配置
+下载msi文件直接安装  mysql-installer--community-8.0.22.0
+
+python 安装记得勾选自动配置路径path坏境变量
+
+</font>
+</span>	
+</pre>
+</figure>							
+<figure class="highlight bash">
+	
+</figure>
+<figure class="highlight bash">
+	
+</figure>
+						</div>
+						<div class="article-info article-info-index">
+					<div class="clearfix"></div>
+						</div>
+					</div>
+
+				</article>
+			</div>
+			<footer id="footer">
+				<div class="outer">
+					<div id="footer-info">
+						<div class="footer-left">&copy; 2020 XU LIN</div>
+						<div class="footer-right">
+							<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a
+								href="https://github.com/smackgg/hexo-theme-smackdown"
+								target="_blank">Smackdown</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+
+		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+		<script>
+			var yiliaConfig = {
+				fancybox : true,
+				mathjax : true,
+				animate : true,
+				isHome : true,
+				isPost : false,
+				isArchive : false,
+				isTag : false,
+				isCategory : false,
+				open_in_new : false
+			}
+		</script>
+
+		<script src="/js/main.js"></script>
+
+
+
+
+		<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+	<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+		<script>
+window.onload=function(){
+
+//定时器每秒调用一次fnDate()
+setInterval(function(){
+fnDate();
+},1000);
+}
+
+//js 获取当前时间
+function fnDate(){
+var oDiv=document.getElementById("time");
+var date=new Date();
+var year=date.getFullYear();//当前年份
+var month=date.getMonth();//当前月份
+var data=date.getDate();//天
+var hours=date.getHours();//小时
+var minute=date.getMinutes();//分
+var second=date.getSeconds();//秒
+var time=year+"-"+fnW((month+1))+"-"+fnW(data)+" "+fnW(hours)+":"+fnW(minute)+":"+fnW(second);
+oDiv.innerHTML=time;
+}
+//补位 当某个字段不是两位数时补0
+function fnW(str){
+var num;
+str>10?num=str:num="0"+str;
+return num;
+} 
+</script>
+	
+	</div>
+</body>
+</html>
