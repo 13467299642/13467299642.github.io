@@ -232,6 +232,10 @@ select * from TableName where 字段 like '%''%' ;单引号的处理
 							<figure class="highlight bash">
 <pre>
 <span class="line">
+<font size="5">查询数据插入</font><font size="4">	
+update   b  set   b.LASTPRODUCT =a.a , b.CURRENTDEVICE=a.b 
+  from   (select name,a,b from [dbo].[1238])   a,table   b   
+  where   a.name=b.NAME
 <font size="5">iif的使用</font><font size="4">	
 select StuName,Subject,iif( Score>60,'合格','不合格' ) as '成绩'  from StuScore
 <font size="5">添加数据</font><font size="4">	
