@@ -523,14 +523,14 @@ if (dataTable.Rows.Count > 0)
 <h2 id=""><font size="5" color="Aqua" ><p>3.C# XML</p></font></h2>	
 <figure class="highlight bash"><pre><span class="line"><font size="4">
 --/获得指定标签下的值
-<a>
+<xmp><a>
 	<b>
 		<b1>1</b1>
 	</b>
 	<c>
 		<c1>1</c1>
 	</c>
-</a>
+</a></xmp>
 XmlDocument xmlDoc = new XmlDocument();
 string path =路径;
 if (File.Exists(path))
@@ -541,12 +541,12 @@ if (File.Exists(path))
     string str = (xn.SelectSingleNode("b1")).InnerText;
 }
 --//删除指定标签
-<a>
+<xmp><a>
 	<b name='1'>
 	<b>
 	<b name='2'>
 	<b>
-</a>
+</a></xmp>
 public void delete()
 {
     string xmlpath = 路径;
