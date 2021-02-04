@@ -519,7 +519,53 @@ if (dataTable.Rows.Count > 0)
 
     }
 }
+</span></pre></font></figure>
+<h2 id=""><font size="5" color="Aqua" ><p>3.C# XML</p></font></h2>	
+<figure class="highlight bash"><pre><span class="line"><font size="4">
+--/获得指定标签下的值
+<a>
+	<b>
+		<b1>1</b1>
+	</b>
+	<c>
+		<c1>1</c1>
+	</c>
+</a>
+XmlDocument xmlDoc = new XmlDocument();
+string path =路径;
+if (File.Exists(path))
+{
+    //加载xml
+    xmlDoc.Load(path);
+    XmlNode xn = xmlDoc.SelectSingleNode("a/b");    
+    string str = (xn.SelectSingleNode("b1")).InnerText;
+}
+--//删除指定标签
+<a>
+	<b name='1'>
+	<b>
+	<b name='2'>
+	<b>
+</a>
+public void delete()
+{
+    string xmlpath = 路径;
+    XDocument xdoc = XDocument.Load(xmlpath);
+    IEnumerable<XElement> C = xdoc.Element("a").Elements();
+    foreach (XElement tmp in C)
+    {
+        int count = C.Count();
+        if (tmp.Name == "b")
+        {
+            if (tmp.Attribute("Name").Value == "1")
+            {
+                tmp.Remove();
+            }
+        }
 
+    }
+    xdoc.Save(xmlpath);
+}
 </span></pre></font></figure>
 							
 							<figure class="highlight bash">
