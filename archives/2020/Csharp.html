@@ -208,6 +208,12 @@ public void GetPanl(Control control)
 <h2 id=""><font size="5" color="Aqua" ><p>2.C#的基本使用</p></font></h2>			
 <figure class="highlight bash">
 <pre><span class="line"><font size="4">	
+<font  color="DeepSkyBlue" >--//句柄</font>
+IntPtr hWnd = this.Handle;
+//复制
+HANDLE（句柄）是Windows操作系统中的一个概念。在Windows程序中，有各种各样的资源（窗口、图标、光标等），系统在创建这些资源时会为它们分配内存，
+并返回标示这些资源的标示号，即句柄。句柄指的是一个核心对象在某一个进程中的唯一索引，而不是指针。由于地址空间的限制，句柄所标识的内容对进程是不可见的，
+只能由操作系统通过进程句柄列表来进行维护。句柄列表：每个进程都要创建一个句柄列表，这些句柄指向各种系统资源，比如信号量，线程，和文件等，进程中的所有线程都可以访问这些资源。
 <font  color="DeepSkyBlue" >--//获在有数据的情况下修改table的某一列类型</font>
 private DataTable UpdateDataTable(DataTable argDataTable)
  {
