@@ -200,6 +200,13 @@
 <span class="line">
 <font size="5">方法一：</font>
 <font size="4">	
+--//事务简单使用
+begin transaction T1
+执行sql  delete 或者update
+没有commit前可以回滚
+commit
+//回滚
+ROLLBACK TRANSACTION  T1
 --//将源表的数据结构复制到临时表#tempTable中
 select * into #tempTable（解释：临时表） from bbb（解释：要处理的表） where 1<>1
 --//在临时表中创建索引，并忽略重复列数据
