@@ -200,7 +200,39 @@
 <span class="line">
 <font size="5">方法一：</font>
 <font size="4">	
---//事务简单使用
+--//将源表的数据结构复制到临时表#tempTable中
+select * into #tempTable（解释：临时表） from bbb（解释：要处理的表） where 1<>1
+--//在临时表中创建索引，并忽略重复列数据
+Create unique index temp on #tempTable(去重字段) with IGNORE_DUP_KEY
+--//将源表中的数据拷贝到临时表中，拷贝的同时会忽略重复列的数据，也即只保留了一份数据。
+insert into #tempTable select * from （解释：要处理的表）
+insert into tablename(字段a,b,c)  select (字段a,b,c)  from  tablename
+drop table #tempTable
+</font>
+<font size="5">方法二：</font>
+<font size="4">
+前提数据中有一列id唯一。
+<font  color="DeepSkyBlue" >--//查询某一列不重复的记录</font>
+SELECT * FROM dbo.Member WHERE ID  IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
+<font  color="DeepSkyBlue" >--//清除某一列重复的数据</font>
+DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
+<font  color="DeepSkyBlue" >--//可以对表更改添加一列</font>
+ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
+alter table dbo.table_1  drop column [ID]（删除某一列）
+<font  color="DeepSkyBlue" >--//模糊查询对特殊符号的处理</font>
+select * from TableName where 字段 like '%''%' ;单引号的处理
+" ---------["]   [ ---------[[]
+% ---------[%]   _ ---------[_]
+^ ---------[^]
+</font>
+								</span>
+							</pre>																		
+							</figure>
+<h3 id=""><p><font size="5" color="Aqua" >2.sql 基本应用 </font></h3>
+							<figure class="highlight bash">
+<pre>
+<span class="line">
+<font size="5">事务简单使用</font><font size="4">
 https://www.cnblogs.com/knowledgesea/p/3714417.html
 begin transaction T1
 执行sql  delete 或者update
@@ -249,38 +281,6 @@ rollback tran pigOneIn --如果成功Lives表中，将会有3条数据。
 设置 xact_abort on/off , 指定是否回滚当前事务，为on时如果当前sql出错，回滚整个事务，为off时如果sql出错回滚当前sql语句，其它语句照常运行读写数据库。
 需要注意的时：xact_abort只对运行时出现的错误有用，如果sql语句存在编译时错误，那么他就失灵啦。
 简单理解   如果出现错误其他的正常执行不回滚
---//将源表的数据结构复制到临时表#tempTable中
-select * into #tempTable（解释：临时表） from bbb（解释：要处理的表） where 1<>1
---//在临时表中创建索引，并忽略重复列数据
-Create unique index temp on #tempTable(去重字段) with IGNORE_DUP_KEY
---//将源表中的数据拷贝到临时表中，拷贝的同时会忽略重复列的数据，也即只保留了一份数据。
-insert into #tempTable select * from （解释：要处理的表）
-insert into tablename(字段a,b,c)  select (字段a,b,c)  from  tablename
-drop table #tempTable
-</font>
-<font size="5">方法二：</font>
-<font size="4">
-前提数据中有一列id唯一。
-<font  color="DeepSkyBlue" >--//查询某一列不重复的记录</font>
-SELECT * FROM dbo.Member WHERE ID  IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
-<font  color="DeepSkyBlue" >--//清除某一列重复的数据</font>
-DELETE FROM dbo.Member WHERE ID NOT IN (SELECT MIN(ID) FROM dbo.Member GROUP BY Name)
-<font  color="DeepSkyBlue" >--//可以对表更改添加一列</font>
-ALTER TABLE dbo.table_1  ADD id int IDENTITY(1,1)（添加标识列，int类型自增长）
-alter table dbo.table_1  drop column [ID]（删除某一列）
-<font  color="DeepSkyBlue" >--//模糊查询对特殊符号的处理</font>
-select * from TableName where 字段 like '%''%' ;单引号的处理
-" ---------["]   [ ---------[[]
-% ---------[%]   _ ---------[_]
-^ ---------[^]
-</font>
-								</span>
-							</pre>																		
-							</figure>
-<h3 id=""><p><font size="5" color="Aqua" >2.sql 基本应用 </font></h3>
-							<figure class="highlight bash">
-<pre>
-<span class="line">
 <font size="5">查询数据插入</font><font size="4">	
 update   b  set   b.LASTPRODUCT =a.a , b.CURRENTDEVICE=a.b 
   from   (select name,a,b from [dbo].[1238])   a,table   b   
