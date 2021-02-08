@@ -201,12 +201,46 @@
 <font size="5">方法一：</font>
 <font size="4">	
 --//事务简单使用
+https://www.cnblogs.com/knowledgesea/p/3714417.html
 begin transaction T1
 执行sql  delete 或者update
 没有commit前可以回滚
 commit
 //回滚
 ROLLBACK TRANSACTION  T1
+------------------------------
+三条插入语句如果有一条失败全部回滚  
+
+--开启事务
+begin tran
+--错误扑捉机制，看好啦，这里也有的。并且可以嵌套。
+begin try    
+   --语句正确
+   insert into [1238] (name,a,b) values ('猪肉',1,1)   
+    --加入保存点
+   save tran pigOneIn
+   --Numb为int类型，出错
+   insert into [1238] (name,a,b) values ('猪肉','足球',2)
+   --语句正确
+   insert into [1238] (name,a,b)  values ('狗肉',5,3)
+end try
+begin catch
+   select Error_number() as ErrorNumber,  --错误代码
+          Error_severity() as ErrorSeverity,  --错误严重级别，级别小于10 try catch 捕获不到
+          Error_state() as ErrorState ,  --错误状态码
+          Error_Procedure() as ErrorProcedure , --出现错误的存储过程或触发器的名称。
+          Error_line() as ErrorLine,  --发生错误的行号
+          Error_message() as ErrorMessage  --错误的具体信息
+   if(@@trancount>0) --全局变量@@trancount，事务开启此值+1，他用来判断是有开启事务
+      rollback tran   ---由于出错，这里回滚事务到原点，第一条语句也没有插入成功。
+end catch
+if(@@trancount>0)
+rollback tran pigOneIn --如果成功Lives表中，将会有3条数据。
+------------------------
+使用set xact_abort
+设置 xact_abort on/off , 指定是否回滚当前事务，为on时如果当前sql出错，回滚整个事务，为off时如果sql出错回滚当前sql语句，其它语句照常运行读写数据库。
+需要注意的时：xact_abort只对运行时出现的错误有用，如果sql语句存在编译时错误，那么他就失灵啦。
+简单理解   如果出现错误其他的正常执行不回滚
 --//将源表的数据结构复制到临时表#tempTable中
 select * into #tempTable（解释：临时表） from bbb（解释：要处理的表） where 1<>1
 --//在临时表中创建索引，并忽略重复列数据
