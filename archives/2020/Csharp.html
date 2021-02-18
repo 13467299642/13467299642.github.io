@@ -208,7 +208,24 @@ public void GetPanl(Control control)
 <h2 id=""><font size="5" color="Aqua" ><p>2.C#的基本使用</p></font></h2>			
 <figure class="highlight bash">
 <pre><span class="line"><font size="4">	
-转换时间格式
+<font  color="DeepSkyBlue" >--//图片处理</font>
+//图片填充inmgebox
+pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+//截取指定图片
+https://www.cnblogs.com/zhangruifeng/p/5986463.html
+或者：
+Bitmap bmp = new Bitmap(@"D:\Inked1_LI.bmp");
+Bitmap bmp2 = bmp.Clone(new Rectangle(160,2200, 5200, 6200), bmp.PixelFormat);
+pictureBox2.Image = (Image)bmp2;
+bmp2.Save(@"d:\bmp2.jpg");
+<font  color="DeepSkyBlue" >--//combox赋值</font>
+string[] str = new string[] {"第一个","第二个","第三个","第四个"};
+comboBox1.DataSource = str;
+或者
+this.cboColum.Properties.Items.Add("111");
+
+<font  color="DeepSkyBlue" >--//转换时间格式</font>
 G  YYYY-MM-dd hh:mm:sss
 F YYYY年MM月dd日 hh:mm:ss
 string.Format("dasdasdas+  {0:G}",DateTime.Now)
