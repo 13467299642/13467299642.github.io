@@ -398,7 +398,15 @@ CREATE TABLE [TAP].[STUDENT](
 						
 <h3 id=""><p><font size="5" color="Aqua" >3.SQL 的导入导出操作 </font></h3>
 <figure class="highlight bash">
-<pre><span><font size="4">	
+<pre><span><font size="4">
+<font  color="DeepSkyBlue" >--//导入数据库</font>
+mdf主数据库   ldf日志文件   ndf是次数据库文件
+修改属性权限
+EXEC sp_attach_db @dbname = 'SutdentMIS',
+@filename1='G:\新建文件夹\Code\06\Project\ERP\DataBase\db_ERP.MDF',     
+@filename2='G:\新建文件夹\Code\06\Project\ERP\DataBase\db_ERP_log.LDF'
+或者右键数据库   附加
+有时需将mdf和ldf放入MSSQL12.MSSQLSERVER\MSSQL\DATA下
 <font  color="DeepSkyBlue" >--//导出脚本操作 </font>
 导入exec exce版本问题安装AccessDatabaseEngine ，可以尝试xlsx 替换xls 导入
 选择数据库→→→→→→右键选择任务→→→→→→选择生成脚本→→→→→→选择对象  勾选要导出的表→→→→→→设置脚本编写选项选择→高级（拉到最后选择 是结构还是数据）→→→→→路径选择导出
