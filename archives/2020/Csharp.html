@@ -208,6 +208,10 @@ public void GetPanl(Control control)
 <h2 id=""><font size="5" color="Aqua" ><p>2.C#的基本使用</p></font></h2>			
 <figure class="highlight bash">
 <pre><span class="line"><font size="4">	
+<font  color="DeepSkyBlue" >--//路径的截取Path类还有很多截取方法</font>
+string path ="E:\新建文件夹\0.bmp";
+Path.GetDirectoryName(path）;return E:\新建文件夹
+Path.GetFileName();return ".0bmp"
 invoke和begininvoke 区别
 https://www.cnblogs.com/lsgsanxiao/p/5523282.html
 <font  color="DeepSkyBlue" >--//图片处理</font>
@@ -554,7 +558,7 @@ if (dataTable.Rows.Count > 0)
     }
 }
 </span></pre></font></figure>
-<h2 id=""><font size="5" color="Aqua" ><p>3.C# XML</p></font></h2>	
+<h2 id=""><font size="5" color="Aqua" ><p>5.C# XML</p></font></h2>	
 <figure class="highlight bash"><pre><span class="line"><font size="4">
 --/获得指定标签下的值
 <xmp><a>
@@ -605,6 +609,40 @@ public void delete()
     }
     xdoc.Save(xmlpath);
 }
+</span></pre></font></figure>
+<h2 id=""><font size="5" color="Aqua" ><p>6.C# 切割图片以及画图GDI简单使用和总结</p></font></h2>	
+<font  color="DeepSkyBlue" >--//基本类</font>
+ Bitmap bmp = new Bitmap(path);指定路径获得图片（Bitmap）类型
+Image Img = FromFile(path);指定路径获得图片（Image）类型
+RectangleF（）PointF（）SizeF（）类都存在线束小数类型和整数类型Rectangle（）Point（）
+<font  color="DeepSkyBlue" >--//Bitmap可以直接复制图片的某部分出来然后保存</font>
+bmp.Clone(new RectangleF(StartX, StartY, pPartWidth, pPartHeight), bmp.PixelFormat).Save(SavePath); 
+<font  color="DeepSkyBlue" >--//方法二 也可以 Graphics.DrawImage();</font>
+// 获取图片指定部分
+/// </summary>
+/// <param name="originalImg">图片</param>
+/// <param name="pPartStartPointX">目标图片开始绘制处的坐标X值(通常为0)</param>
+/// <param name="pPartStartPointY">目标图片开始绘制处的坐标Y值(通常为0)</param>
+/// <param name="pPartWidth">目标图片的宽度</param>
+/// <param name="pPartHeight">目标图片的高度</param>
+/// <param name="pOrigStartPointX">原始图片开始截取处的坐标X值</param>
+/// <param name="pOrigStartPointY">原始图片开始截取处的坐标Y值</param>
+/// PointF
+ static System.Drawing.Bitmap GetPart(Image originalImg, float pPartStartPointX, float pPartStartPointY, int pPartWidth, int pPartHeight, float pOrigStartPointX, float pOrigStartPointY)
+ {
+     //System.Drawing.Image originalImg = System.Drawing.Image.FromFile(pPath);
+
+     System.Drawing.Bitmap partImg = new System.Drawing.Bitmap(pPartWidth, pPartHeight);
+     System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(partImg);
+     System.Drawing.RectangleF destRect = new System.Drawing.RectangleF(new System.Drawing.PointF(pPartStartPointX, pPartStartPointY), new System.Drawing.SizeF(pPartWidth, pPartHeight));//目标位置
+     System.Drawing.RectangleF origRect = new System.Drawing.RectangleF(new System.Drawing.PointF(pOrigStartPointX, pOrigStartPointY), new System.Drawing.SizeF(pPartWidth, pPartHeight));//原图位置（默认从原图中截取的图片大小等于目标图片的大小）
+
+     graphics.DrawImage(originalImg, destRect, origRect, System.Drawing.GraphicsUnit.Pixel);
+
+     return partImg;
+ }
+ 
+
 </span></pre></font></figure>
 							
 							<figure class="highlight bash">
