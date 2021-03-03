@@ -644,8 +644,13 @@ bmp.Clone(new RectangleF(StartX, StartY, pPartWidth, pPartHeight), bmp.PixelForm
 
      return partImg;
  }
- 
-
+ <font  color="DeepSkyBlue" >--//Graphics 画圆;</font>
+   Graphics gra = e.Graphics;
+   Pen p = new Pen(Color.Black, 2);          
+   gra.DrawEllipse(p, _X, Y,w , h);
+   --//画个正方形
+   g.DrawRectangle(new Pen(Color.Black),X,Y,Width,Height);//
+   g.FillRectangle(new Pen(Color.Black),X,Y,Width,Height);//填充颜色
 </span></pre></font></figure>
 							
 							<figure class="highlight bash">
