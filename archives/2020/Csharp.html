@@ -208,6 +208,15 @@ public void GetPanl(Control control)
 <h2 id=""><font size="5" color="Aqua" ><p>2.C#的基本使用</p></font></h2>			
 <figure class="highlight bash">
 <pre><span class="line"><font size="4">	
+<font  color="DeepSkyBlue" >--//简单线程使用</font>
+new Thread(delegate ()
+{
+    StartScanLo();  //方法
+    Thread.Sleep(100);
+}).Start() ;
+--//
+Thread thread = new Thread(方法);
+thread.Start();
 <font  color="DeepSkyBlue" >--//textbox只能输入数字和小数</font>
 https://www.cnblogs.com/liuqifeng/p/9148801.html
 <font  color="DeepSkyBlue" >--//路径的截取Path类还有很多截取方法</font>
