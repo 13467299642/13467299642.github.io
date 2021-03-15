@@ -442,6 +442,31 @@ using (StreamReader sr = new StreamReader(路径))
 2. string转换byte类型 byte[] bb = Convert.FromBase64String(string );
 3. byte类型转换image   MemoryStream ms = new MemoryStream(bb);
 Image image = System.Drawing.Image.FromStream(ms);
+ //-----------------------------------
+ FileStream fs = new FileStream(@"E:\新建文件夹\FX20210305133318.bmp", FileMode.Open, FileAccess.Read);
+ System.Drawing.Image originalImg = System.Drawing.Image.FromStream(fs);
+ int a = originalImg.Width;
+ //---------------------------------------
+ Bitmap pic = new Bitmap(@"E:\新建文件夹\FX20210305133318.bmp");
+ int width = pic.Size.Width;   // 图片的宽度
+ int height = pic.Size.Height;   // 图片的高度
+ //---------------------------------------
+ System.Drawing.Image pic1 = System.Drawing.Image.FromFile(@"E:\新建文件夹\FX20210305133318.bmp");
+ int width1 = pic1.Size.Width;   // 图片的宽度
+ int height1 = pic1.Size.Height;   // 图片的高度
+ <font  color="DeepSkyBlue" >---//路径的使用（path）</font>
+ string path ="G:\Product\ISIE\ISIE.CutPic\bin\Debug\123.bmp";
+ Path.GetFullPath(@"..//..")获得项目运行的上级目录
+ Path.GetFullPath(@"..//..//..")获得项目运行的上上级目录
+ Directory.Exists(path)--//判断某个文件夹是否存在
+ file.Exists(path)--//判断某个文件夹里某个文件是否存在
+ Directory.GetFiles(_PicPath, "*.bmp")--//获得文件里所以后缀为.bmp的
+ Path.GetFileNameWithoutExtension(path)--// 返回123 (\bin\Debug\123.bmp)
+ Path.GetFileName(path)--// 返回123.bmp (\bin\Debug\123.bmp)
+  <font  color="DeepSkyBlue" >---//路径的使用（path）</font>
+ Math.Sqrt(数字4,2);--//开方  return 2
+ Math.Pow(数字4，2）；--//平方return 16
+ 
 </span></pre></font></figure>
 <h2 id=""><font size="5" color="Aqua" ><p>3.C# Datatable的基本使用</p></font></h2>	
 <figure class="highlight bash"><pre><span class="line"><font size="4">
