@@ -689,6 +689,74 @@ bmp.Clone(new RectangleF(StartX, StartY, pPartWidth, pPartHeight), bmp.PixelForm
    --//画个正方形
    g.DrawRectangle(new Pen(Color.Black),X,Y,Width,Height);//
    g.FillRectangle(new Pen(Color.Black),X,Y,Width,Height);//填充颜色
+--//GDAL处理图片的方法
+ static void GDAlGetCutPicture(String srcFileName, int LeftAndRightSpacing, int TopAndBottomSpacing, int StartPointX, int StartPointY, int pPartWidth, int pPartHeight)
+  {
+    try
+    {
+        if (File.Exists(srcFileName))
+        {
+            Gdal.AllRegister();
+            Dataset srcDs = Gdal.Open(srcFileName, Access.GA_ReadOnly);
+            DataType srcType = srcDs.GetRasterBand(1).DataType;
+            int bandCount = srcDs.RasterCount;
+            double[] adfGeoTransform = new double[6];
+            srcDs.GetGeoTransform(adfGeoTransform);
+            int StartX = StartPointX;// 开始的X
+            int StartY = StartPointY;// 开始的Y
+            int width = srcDs.RasterXSize;  // 图片的宽度
+            int height = srcDs.RasterYSize; // 图片的高度
+
+            for (int i = 1; i <= (height - StartPointY) / (pPartHeight + TopAndBottomSpacing); i++)//行
+            {
+                for (int j = 1; j <= (width - StartPointX) / (pPartWidth + LeftAndRightSpacing); j++)//列
+                {
+                    //CreatFile(Path.GetDirectoryName(path));
+                    //String SavePath = Path.GetDirectoryName(path).ToString() + @"\" + "Cut_" + Path.GetFileName(path) + @"\" + i + "-" + j + ".bmp";
+                    //String SavePath = Path.GetDirectoryName(_PicPath).ToString() + @"\" + Path.GetFileName(_PicPath) + @"\" + "Cut_" + Path.GetFileNameWithoutExtension(srcFileName) + @"\" + i + "-" + j + ".bmp";
+                    String SavePath = SvaePath + @"\" + "Cut_" + Path.GetFileNameWithoutExtension(srcFileName) + @"\" + i + "-" + j + ".bmp";
+                    Driver drv = Gdal.GetDriverByName("GTIFF");
+                    Dataset dstDs = drv.Create(SavePath, pPartWidth, pPartHeight, bandCount, srcType, null);
+                    dstDs.SetGeoTransform(adfGeoTransform);
+                    dstDs.SetProjection(srcDs.GetProjectionRef());
+                    int[] bandArray = new int[bandCount];
+                    for (int y = 0; y < bandCount; y++)
+                    {
+                        bandArray[y] = y + 1;
+                    }
+                    int[] dataArray = new int[pPartWidth * pPartHeight * bandCount];
+                    srcDs.ReadRaster(StartX, StartY, pPartWidth, pPartHeight, dataArray, pPartWidth, pPartHeight, bandCount, bandArray, 0, 0, 0);
+                    dstDs.WriteRaster(0, 0, pPartWidth, pPartHeight, dataArray, pPartWidth, pPartHeight, bandCount, bandArray, 0, 0, 0);
+                    dstDs.FlushCache();
+                    if (j == 1)
+                    {
+                        StartX = StartPointX + pPartWidth + LeftAndRightSpacing;
+                    }
+                    else
+                    {
+                        StartX += pPartWidth + LeftAndRightSpacing;
+                    }
+                }
+                StartX = StartPointX;
+                if (i == 1)
+                {
+                    StartY = StartPointY + pPartHeight + TopAndBottomSpacing;
+                }
+                else
+                {
+                    StartY += pPartHeight + TopAndBottomSpacing;
+                }
+            }
+            srcDs.Dispose();
+            //dstDs.Dispose();
+        }
+    }
+    catch (Exception e)
+    {
+       throw;
+    }
+}
+   
 </span></pre></font></figure>
 							
 							<figure class="highlight bash">
