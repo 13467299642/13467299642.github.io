@@ -223,6 +223,11 @@ thread.Start();
 <font  color="DeepSkyBlue" >--//textbox只能输入数字和小数</font>
 https://www.cnblogs.com/liuqifeng/p/9148801.html
 <font  color="DeepSkyBlue" >--//路径的截取Path类还有很多截取方法</font>
+https://blog.csdn.net/DxgTeam/article/details/108481373
+Substring（开始位置，截取长度）
+Substring（开始位置截取到结束）要给参数
+DirectoryInfo info = new DirectoryInfo(string路径);
+String path = info.Parent.Parent.FullName; 返回上一级（一个Parent是一个级别/）
 string path ="E:\新建文件夹\0.bmp";
 Path.GetDirectoryName(path）;return E:\新建文件夹
 Path.GetFileName();return ".0bmp"
