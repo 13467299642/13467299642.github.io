@@ -189,6 +189,17 @@
 							</h1>
 <h2 id=""><font size="5" color="Aqua" ><p>1.X-SCADA数据库处理</p></font></h2>
 <figure class="highlight bash"><pre><span class="line"><font size="4">
+<font  color="DeepSkyBlue" >--//介绍</font>
+x-scada 应用于 erp  mes 大数据 工厂监控等
+设备Equipment→→→→→→→X-Scada→→→→→→→收集数据→→→→→→→→→→→→EAP→→→→→→→→→Mes
+数据处理的多样性
+1.可以链接数据库读取数据
+2.可以从设备读取数据
+3.可以从WebService读取数据
+4.可以把数据存到数据库
+5.可以以网页的方式运行（bs）html
+6 可以以cs 客户端的方式运行
+
 <font  color="DeepSkyBlue" >--//数据处理</font>
 远程访问（远程桌面连接 ms）ip地址  账号密码登陆
 设备数据到----------> web service（item_name）   --------->xml解析  ----------->X-SCADA  UI
@@ -196,19 +207,16 @@
 制造工序的监控（制浆，化成等）设备以及多项数据的采集及显示
 说明文档，功能测试，验收报告
 <font  color="DeepSkyBlue" >--//技术代码</font>
-脚本类似javascript 
+脚本类似javascript   有自己的编码规则
 替换当前页面
 function  autopage()
 {
 window.location.replace("页面名");
 }
 $XT("标签").value; 获得标签值
+$XV()
 $XD("sqlite_1").execute()执行sql语句
 运行xix项目产生xid数据库，可以采用工具打开
-
-
-
-
 </span></pre></font></figure>
 </div>
 <div class="article-info article-info-index">
