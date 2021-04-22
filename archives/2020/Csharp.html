@@ -499,6 +499,115 @@ dataTable.DefaultView.Sort = "字段 asc";对table排序(排序字段为int类�
 DataTable.Compute(“expression”,”filter”);  参数一函数，参数二筛选条件
 Expression： sum(列名)，avg(列名)，sum(列名)，min(列名)，max(列名)，count(列名) 
 参考：https://blog.csdn.net/hello_mr_anan/article/details/81772803
+//------------------------------
+private void button1_Click(object sender, EventArgs e)
+{
+    dt_One.Clear();
+    dt_One.Columns.Clear();
+    dt_Two.Clear();
+    dt_Two.Columns.Clear();
+    CreatTable();
+    dataGridView1.DataSource = dt_One;
+    dataGridView2.DataSource = dt_Two;       
+}
+      public void CreatTable()
+        {
+            //dt_One
+            DataColumn[] dataColumns = new DataColumn[101];
+            dataColumns[0] = new DataColumn("One",typeof(string)); ;
+            dataColumns[2] = new DataColumn("Three", typeof(string));
+            dataColumns[3] = new DataColumn("Four", typeof(string)); 
+            dt_One.Columns.AddRange(dataColumns);
+            dt_One.Columns.Add("Two",typeof(string));
+            dt_One.Columns["Two"].SetOrdinal(1);
+            dt_One.Rows.Add(new string[] { "1111", "C语言程序设计","一","256"});
+            dt_One.Rows.Add(new string[] { "2222", "Java程序设计", "二","300"});
+            dt_One.Rows.Add(new string[] { "3333", "数据库概论", "一","200"});
+            dt_One.Rows.Add(new string[] { "4444", "操作系统原理","二","100" });
+            dt_One.Rows.Add(new string[] { "5555", "sqlserver", "二","44" });
+            dt_One.Rows.Add(new string[] { "6666", "oracle", "二","88" });
+            dt_One.Rows.Add(new string[] { "7777", "mysql", "一" ,"99"});
+            //dt_Two
+            dt_Two.Columns.Add("一");
+            dt_Two.Columns.Add("二");
+            dt_Two.Columns.Add("三");
+            dt_Two.Columns.Add("四");
+            dt_Two.Rows.Add("一", "22","");
+            dt_Two.Rows.Add("一", "53", "");
+            dt_Two.Rows.Add("二", "7", "");
+            dt_Two.Rows.Add("二", "55", "");
+            dt_Two.Rows.Add("二", "262", "");
+            dt_Two.Rows.Add("一", "222", "");
+            //-----------------Test1
+            var Linq_table = from one in dt_One.AsEnumerable()
+                             from two in dt_Two.AsEnumerable()
+                             where one.Field<string>("Three") == two.Field<string>("一")
+                             select new {
+                                 Two = one.Field<string>("Two"),
+                                   Three = one.Field<string>("Three")
+                             };
+            //-------------------------Test2
+            var test_one = from DataRow one in dt_One.Rows
+                           where one["Three"].ToString() == "一"
+                           select new
+                           {
+                               Two = one.Field<string>("Two"),
+                               Three = one.Field<string>("Three")
+                           };
+            DataTable test_one1 = LINQToDataTable(test_one.Distinct());
+            var test_two = from DataRow two in dt_Two.Rows
+                           where two["一"].ToString() == "一"
+                           select new
+                           {
+                               一 = two.Field<string>("一")
+                           };
+            DataTable test_one2 = LINQToDataTable(test_two.Distinct());
+            var last = from one in test_one
+                       join two in test_two on one.Three equals two.一
+                       select new {
+                           Three =  one.Three,
+                           二 = two.一
+                       };      
+            //dataGridView3.DataSource = LINQToDataTable(Linq_table.Distinct()); //Test1
+            dataGridView3.DataSource = LINQToDataTable(last.Distinct()); //Test2
+        }
+        public DataTable LINQToDataTable<T>(IEnumerable<T> varlist)
+        {
+            DataTable dtReturn = new DataTable();
+            // column names 
+            PropertyInfo[] oProps = null;
+            if (varlist == null) return dtReturn;
+            foreach (T rec in varlist)
+            {
+                // Use reflection to get property names, to create table, Only first time, others 
+                //will follow;
+                 if (oProps == null)
+                {
+                    oProps = ((Type)rec.GetType()).GetProperties();
+                    foreach (PropertyInfo pi in oProps)
+                    {
+                        Type colType = pi.PropertyType;
+
+                        if ((colType.IsGenericType) && (colType.GetGenericTypeDefinition()
+                        == typeof(Nullable<>)))
+                        {
+                            colType = colType.GetGenericArguments()[0];
+                        }
+
+                        dtReturn.Columns.Add(new DataColumn(pi.Name, colType));
+                    }
+                }
+               DataRow dr = dtReturn.NewRow();
+                foreach (PropertyInfo pi in oProps)
+                {
+                    dr[pi.Name] = pi.GetValue(rec, null) == null ? DBNull.Value : pi.GetValue
+                    (rec, null);
+                }
+                dtReturn.Rows.Add(dr);
+            }
+            return dtReturn;
+        }
+
 </span></pre></font></figure>
 <h2 id=""><font size="5" color="Aqua" ><p>4.C# EXCEL</p></font></h2>		
 <figure class="highlight bash"><pre><span class="line"><font size="4">
