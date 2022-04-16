@@ -211,6 +211,41 @@ public void GetPanl(Control control)
 <h2 id=""><font size="5" color="Aqua" ><p>2.C#的基本使用</p></font></h2>			
 <figure class="highlight bash">
 <pre><span class="line"><font size="4">	
+<font  color="DeepSkyBlue" >--//集合排序</font>
+  private void button5_Click(object sender, EventArgs e)
+        {
+            //测试枚举排序
+            List<aaa> demo = new List<aaa>();
+            demo.Add(new aaa()    {b="c" });
+            demo.Add(new aaa() { b = "a" });
+            demo.Add(new aaa() { b = "b" });
+            demo.Add(new aaa() { b = "e" });
+            demo.Add(new aaa() { b = "g" });
+            demo.Add(new aaa() { b = "d" });
+            demo.Add(new aaa() { b = "f" });
+            var last = new List<aaa>();
+            List<string> aa = new List<string>{
+                "a",
+                "b",
+                "d",
+                "e",
+                "f",
+                "g"};
+            //last = demo.OrderBy(o => (dasd)Enum.Parse(typeof(dasd), o.b)).ToList();//枚举排序
+            last = demo.OrderBy(o => aa.IndexOf(o.b)).ToList();//集合排序
+       }
+        public enum dasd
+        {
+            a = 1,
+            b = 2,
+            c = 3,
+            d = 4,
+            e = 5,
+            f = 6,
+            g = 7,
+            h = 8
+        } 
+
 <font  color="DeepSkyBlue" >--//数组截取</font>
 //从第3位开始，截取3位
  long[] e = a.Skip(2).Take(3).ToArray();
