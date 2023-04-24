@@ -185,36 +185,17 @@
 
 							<p>Welcome to XU LIN Blog .</p>
 							<h1 id="Sql Server">
-								<p>C#</p>
+								<p>问题解决方案</p>
 							</h1>
-<h2 id=""><font size="5" color="Aqua" ><p>1.获得集合里面的所有控件</p></font></h2>
-<figure class="highlight bash"><pre><span class="line"><font size="4">
+<h2 id=""><font size="5" color="Aqua" ><p>1.数据库文件损坏</p></font></h2>
+		<figure class="highlight bash">
+		<pre>
+		<span class="line">
+		<font size="4">
+		</span></pre></font>
+		</figure>
 
-                               Three = one.Field<string>("Three")
-                           };
-            DataTable test_one1 = LINQToDataTable(test_one.Distinct());
-            var test_two = from DataRow two in dt_Two.Rows
-                           where two["一"].ToString() == "一"
-                           select new
-                           {
-                               一 = two.Field<string>("一")
-                           };
-            DataTable test_one2 = LINQToDataTable(test_two.Distinct());
-            var last = from one in test_one
-                       join two in test_two on one.Three equals two.一
-                       select new {
-                           Three =  one.Three,
-                           二 = two.一
-                       };      
-            //dataGridView3.DataSource = LINQToDataTable(Linq_table.Distinct()); //Test1
-            dataGridView3.DataSource = LINQToDataTable(last.Distinct()); //Test2
-        }
-   
-</span></pre></font></figure>
-
-			<figure class="highlight bash">
-								
-								
+			<figure class="highlight bash">				
 							</figure>
 							<figure class="highlight bash">
 								<table>
@@ -228,16 +209,11 @@
 									</tr>
 								</table>
 							</figure>
-
-							
-
 						</div>
-
 						<div class="article-info article-info-index">
 					<div class="clearfix"></div>
 						</div>
 					</div>
-
 				</article>
 			</div>
 			<footer id="footer">
@@ -253,12 +229,7 @@
 				</div>
 			</footer>
 		</div>
-
-
 		<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-
 		<script>
 			var yiliaConfig = {
 				fancybox : true,
